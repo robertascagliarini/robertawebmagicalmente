@@ -58,13 +58,7 @@ export default function LegalPage({ title, children }) {
             onMouseLeave={e => e.currentTarget.style.color = 'var(--ink-mid)'}>
             <ArrowLeft size={13} /> {CLIENT.ui.backToHome}
           </a>
-          <h1 style={{
-            fontFamily: 'var(--font-display)',
-            fontSize: 'clamp(36px, 5vw, 64px)',
-            color: 'var(--cream)',
-            letterSpacing: '0.02em',
-            lineHeight: 1,
-          }}>{title}</h1>
+          <h1 className="r-display r-lg" style={{ color: 'var(--cream)' }}>{title}</h1>
         </div>
       </section>
 

@@ -11,4 +11,5 @@ export default defineConfig({
   site: `https://${domain}`,
   integrations: [react(), sitemap()],
   output: 'static',
+  devToolbar: { enabled: false },
 })

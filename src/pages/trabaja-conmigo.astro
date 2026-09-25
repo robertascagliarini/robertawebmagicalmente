@@ -1,0 +1,12 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import TrabajaConmigo from './TrabajaConmigo.jsx'
+import { CLIENT } from '../config/client.js'
+---
+<BaseLayout
+  title={`Trabaja conmigo | ${CLIENT.name}`}
+  description="¿Cómo creas tu libertad económica y emocional después de los 40? Black Moon Strategy, The Content Lab y Darkroom: las formas de trabajar con Roberta."
+  canonical={`https://${CLIENT.domain}/trabaja-conmigo`}
+>
+  <TrabajaConmigo client:load />
+</BaseLayout>

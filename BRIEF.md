@@ -1,12 +1,12 @@
-# BRIEF.md — Black Moon Lab
+# BRIEF.md — MagicalMente (Roberta Scagliarini)
 
 # ─────────────────────────────────────────────────────────────
 # SECTION 1 — IDENTITY
 # ─────────────────────────────────────────────────────────────
 
-BUSINESS_NAME: Black Moon Lab
+BUSINESS_NAME: MagicalMente
 
-TAGLINE: Tu laboratorio de contenido semanal.
+TAGLINE: Marca personal · Astrobranding · Marketing energético
 
 SHORT_DESCRIPTION: Laboratorio estratégico de contenido para emprendedoras de servicios. Cada semana recibes estrategia clara, ideas listas para ejecutar y feedback directo de Roberta Scagliarini para crear contenido que posiciona y vende sin agotarte.
 
@@ -120,27 +120,35 @@ PRICING_STYLE: none
 PRIMARY_COLOR: #0A0A0A
 ACCENT_COLOR: #EC1F80
 
-FONT_DISPLAY: Bebas Neue
-FONT_BODY: DM Sans
+FONT_DISPLAY: Arial / Arimo 700 (tracking -0.08em)
+FONT_BODY: Arial / Arimo
+FONT_MONO: DM Mono
+FONT_HAND: Permanent Marker
+FONT_WORDMARK: Archivo Expanded 900
 
 TONE: professional
 
-DESIGN_REFERENCES:
+DESIGN_REFERENCES: https://wearerebel.co/ (layout replicated 1:1, lime #DDFF00 → BML pink #EC1F80; capture in reference/)
 
 DESIGN_AVOID:
 - Default Tailwind palette
 - Spiritual clichés in visuals (moons, crystals, etc. beyond the wordmark)
 - Stock photos
 
-NAV_CTA_LABEL: Entra al lab
-NAV_CTA_HREF: https://stan.store/Magicalmente/p/black-moon-lab
+NAV_CTA_LABEL: Trabaja conmigo
+NAV_CTA_HREF: /trabaja-conmigo
 
-WEBSITE_MODE: landing-page
+WEBSITE_MODE: full-website
 LANGUAGE: es
 DOMAIN: blackmoonlab.vercel.app
 
 PAGES:
 / | Inicio
+/sobre-mi | Sobre mí
+/trabaja-conmigo | Trabaja conmigo
+/trabaja-conmigo/black-moon-strategy | Black Moon Strategy (1.200€ o 2×700€)
+/trabaja-conmigo/the-content-lab | The Content Lab (59€/mes)
+/trabaja-conmigo/darkroom | Darkroom (gratis, Telegram)
 
 SOCIAL_1: instagram | https://www.instagram.com/magical.mente/
 
@@ -157,3 +165,11 @@ NOTES:
 - Membership: €49/month. CTA always goes to https://stan.store/Magicalmente/p/black-moon-lab.
 - Copy tone: professional-direct, no spiritual coach clichés, no "este programa es para ti si...", no generic marketing phrases.
 - Astrological/energetic framing is woven in subtly (days of the week purpose) — never as the main pitch.
+
+PENDIENTE (Roberta):
+- Enlace de pago Black Moon Strategy → CLIENT.programs[bms].ctaHref (hoy abre WhatsApp)
+- Enlace de Telegram Darkroom → CLIENT.programs[darkroom].ctaHref (hoy abre WhatsApp)
+- Confirmar que The Content Lab = stan.store/Magicalmente/p/black-moon-lab
+- Testimonios (secciones omitidas hasta que lleguen)
+- Fotos B/N para los huecos con textura (CLIENT.photos)
+- Contenido de la comparativa "calendario de contenido vs. LAB" (vacía en el copy, omitida)

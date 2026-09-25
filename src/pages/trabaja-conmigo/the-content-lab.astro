@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import TheContentLab from '../services/TheContentLab.jsx'
+import { CLIENT } from '../../config/client.js'
+import { labFaq, faqSchema } from '../../config/faqs.js'
+
+const schema = faqSchema(labFaq)
+---
+<BaseLayout
+  title={`The Content Lab | ${CLIENT.name}`}
+  description="El sistema semanal de contenido con calendario estratégico, Content Diary, feedback directo de Roberta y comunidad. 59€/mes."
+  canonical={`https://${CLIENT.domain}/trabaja-conmigo/the-content-lab`}
+  schema={schema}
+>
+  <TheContentLab client:load />
+</BaseLayout>

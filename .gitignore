@@ -5,3 +5,6 @@ dist/
 temporary screenshots/
 .astro/
 founder_photos/
+
+# Third-party reference capture (wearerebel.co) — local only
+reference/wearerebel/

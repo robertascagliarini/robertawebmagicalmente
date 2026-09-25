@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import SobreMi from './SobreMi.jsx'
+import { CLIENT } from '../config/client.js'
+
+const personSchema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  'name': CLIENT.legalName,
+  'jobTitle': 'Mentora de marca personal, estratega de contenido y astróloga',
+  'url': `https://${CLIENT.domain}/sobre-mi`,
+  'image': `https://${CLIENT.domain}${CLIENT.photos.roberta}`,
+  'sameAs': Object.values(CLIENT.social).filter(Boolean),
+  'worksFor': { '@type': 'Organization', 'name': CLIENT.name },
+})
+---
+<BaseLayout
+  title={`Sobre mí — Roberta Scagliarini | ${CLIENT.name}`}
+  description="Hola, soy Roberta: mentora de marca personal, estratega de contenido, astróloga especializada en astrología psicológica y coach de fortalezas. Esta es mi historia."
+  canonical={`https://${CLIENT.domain}/sobre-mi`}
+  schema={personSchema}
+>
+  <SobreMi client:load />
+</BaseLayout>

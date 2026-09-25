@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Darkroom from '../services/Darkroom.jsx'
+import { CLIENT } from '../../config/client.js'
+import { darkroomFaq, faqSchema } from '../../config/faqs.js'
+
+const schema = faqSchema(darkroomFaq)
+---
+<BaseLayout
+  title={`Darkroom | ${CLIENT.name}`}
+  description="Canal gratuito de Telegram con audios breves sobre posicionamiento energético, oferta y mensaje para mujeres que construyen su negocio después de los 40."
+  canonical={`https://${CLIENT.domain}/trabaja-conmigo/darkroom`}
+  schema={schema}
+>
+  <Darkroom client:load />
+</BaseLayout>

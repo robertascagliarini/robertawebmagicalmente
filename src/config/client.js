@@ -5,9 +5,14 @@
 
 export const CLIENT = {
   // ── Identity ──────────────────────────────────────────────
-  name: 'Black Moon Lab',
-  tagline: 'Tu laboratorio de contenido semanal.',
-  description: 'Laboratorio estratégico de contenido para emprendedoras de servicios. Estrategia clara cada semana, feedback directo y un sistema que posiciona y vende sin agotarte.',
+  name: 'MagicalMente',
+  tagline: 'Marca personal · Astrobranding · Marketing energético',
+  headerTagline: 'Estructura y libertad.',
+  menuBlurb: [
+    'Estructura, marca y contenido — sin tener que hacerlo sola, y sin traicionar quién eres para conseguirlo.',
+    'AstroBranding y Marketing Energético para mujeres que construyen su negocio después de los 40.',
+  ],
+  description: 'Roberta Scagliarini — mentora de marca personal, estratega de contenido y astróloga. Estructura, marca y contenido para mujeres que construyen su negocio después de los 40, a partir de su Carta Natal.',
   domain: 'blackmoonlab.vercel.app',
   language: 'es',
   schemaType: 'ProfessionalService',
@@ -20,7 +25,7 @@ export const CLIENT = {
   // ── Contact ───────────────────────────────────────────────
   phone: '+34 620 109 003',
   whatsapp: '34620109003',
-  whatsappMessage: 'Hola Roberta, me interesa Black Moon Lab.',
+  whatsappMessage: 'Hola Roberta, me interesa trabajar contigo.',
   email: 'roberta@magicalmente.com',
   openingHours: '',
   googleBusinessUrl: '',
@@ -45,17 +50,48 @@ export const CLIENT = {
   },
 
   // ── Navigation ────────────────────────────────────────────
-  // Landing-page mode — anchor links to sections on the same page.
   nav: {
-    ctaLabel: 'Entra al lab',
-    ctaHref: 'https://stan.store/Magicalmente/p/black-moon-lab',
+    ctaLabel: 'Trabaja conmigo',
+    ctaHref: '/trabaja-conmigo',
     links: [
-      { to: '#problema',    label: 'El problema',    iconName: 'Home', end: false },
-      { to: '#sistema',     label: 'El sistema',     iconName: 'Briefcase', end: false },
-      { to: '#como-funciona', label: 'Cómo funciona', iconName: 'BarChart2', end: false },
-      { to: '#roberta',     label: 'Roberta',        iconName: 'Users', end: false },
-      { to: '#faq',         label: 'FAQ',            iconName: 'FileText', end: false },
+      { to: '/',                label: 'Inicio',          end: true },
+      { to: '/sobre-mi',        label: 'Sobre mí',        end: false },
+      { to: '/trabaja-conmigo', label: 'Trabaja conmigo', end: false, accent: true },
     ],
+  },
+
+  // ── Programas (Trabaja conmigo) ───────────────────────────
+  // ctaHref vacío → el CTA abre WhatsApp con un mensaje sobre ese programa.
+  // CLAUDE: rellenar con el enlace de pago / Telegram cuando Roberta lo facilite.
+  programs: [
+    {
+      key: 'bms',
+      name: 'Black Moon Strategy',
+      href: '/trabaja-conmigo/black-moon-strategy',
+      ctaHref: '',
+      whatsappMessage: 'Hola Roberta, quiero información sobre Black Moon Strategy.',
+    },
+    {
+      key: 'lab',
+      name: 'The Content Lab',
+      href: '/trabaja-conmigo/the-content-lab',
+      ctaHref: 'https://stan.store/Magicalmente/p/black-moon-lab',
+      whatsappMessage: 'Hola Roberta, quiero entrar a The Content Lab.',
+    },
+    {
+      key: 'darkroom',
+      name: 'Darkroom',
+      href: '/trabaja-conmigo/darkroom',
+      ctaHref: '',
+      whatsappMessage: 'Hola Roberta, quiero entrar a Darkroom.',
+    },
+  ],
+
+  // ── Fotos ─────────────────────────────────────────────────
+  // Todas se muestran en B/N con grano. Las vacías usan un placeholder.
+  // CLAUDE: sustituir por fotos reales en /public/brand_assets/ cuando lleguen.
+  photos: {
+    roberta: '/brand_assets/roberta.jpg',
   },
 
   // ── UI strings ────────────────────────────────────────────
@@ -71,6 +107,11 @@ export const CLIENT = {
     cookieBannerAccept: 'Aceptar',
     cookieBannerDecline: 'Rechazar',
     cookieBannerLearnMore: 'Más información',
+    openMenuShort: 'Abrir menú',
+    closeMenuShort: 'Cerrar menú',
+    listenDarkroom: 'Escucha Darkroom',
+    faqToggle: 'Mostrar respuesta',
+    createdBy: 'Hecho con estructura y energía',
   },
 
   // ── Analytics ─────────────────────────────────────────────
@@ -95,9 +136,9 @@ export const CLIENT = {
 }
 
 // ── Computed helpers ─────────────────────────────────────────
-export function whatsappLink() {
-  const msg = CLIENT.whatsappMessage
-    ? `?text=${encodeURIComponent(CLIENT.whatsappMessage)}`
+export function whatsappLink(message = CLIENT.whatsappMessage) {
+  const msg = message
+    ? `?text=${encodeURIComponent(message)}`
     : ''
   return `https://wa.me/${CLIENT.whatsapp}${msg}`
 }
@@ -112,4 +153,19 @@ export function ctaLink(customHref) {
     case 'contact-form':  return '/contacto'
     default:              return CLIENT.bookingUrl
   }
+}
+
+export function getProgram(key) {
+  return CLIENT.programs.find(p => p.key === key)
+}
+
+// CTA de compra/entrada de un programa: enlace directo o WhatsApp como fallback
+export function programCta(key) {
+  const p = getProgram(key)
+  return p.ctaHref || whatsappLink(p.whatsappMessage)
+}
+
+// Placeholder oscuro para huecos de foto sin imagen real
+export function placeholderPhoto(w, h, label = 'FOTO') {
+  return `https://placehold.co/${w}x${h}/1c1c1c/3a3a3a?text=${encodeURIComponent(label)}&font=roboto`
 }

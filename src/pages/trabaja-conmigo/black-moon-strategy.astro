@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import BlackMoonStrategy from '../services/BlackMoonStrategy.jsx'
+import { CLIENT } from '../../config/client.js'
+import { bmsFaq, faqSchema } from '../../config/faqs.js'
+
+const schema = faqSchema(bmsFaq)
+---
+<BaseLayout
+  title={`Black Moon Strategy | ${CLIENT.name}`}
+  description="El sistema de 10 semanas para construir tu marca personal después de los 40: identidad, oferta y contenido diseñados a partir de tu carta natal."
+  canonical={`https://${CLIENT.domain}/trabaja-conmigo/black-moon-strategy`}
+  schema={schema}
+>
+  <BlackMoonStrategy client:load />
+</BaseLayout>
