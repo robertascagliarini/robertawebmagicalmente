@@ -836,7 +836,14 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 .r-door:hover::before, .r-door:focus-visible::before { transform: none; }
 .r-door:hover .r-em, .r-door:focus-visible .r-em { color: var(--primary); }
 .r-door:active { transform: scale(0.98); }
-.r-door__label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; }
+.r-door__label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; padding-right: 84px; }
+.r-door .r-door__badge { position: absolute; top: 14px; right: 14px; color: var(--accent); transition: color 0.35s var(--r-ease), transform 0.35s var(--r-ease); }
+.r-door:hover .r-door__badge, .r-door:focus-visible .r-door__badge { color: var(--primary); transform: scale(1.08); }
+/* Sunburst click badge */
+.r-badge { position: relative; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+.r-badge__rays { position: absolute; inset: 0; width: 100%; height: 100%; animation: r-spin 14s linear infinite; }
+.r-badge__label { position: relative; font-family: var(--font-mono); font-size: 8.5px; line-height: 1.15; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; }
+@media (prefers-reduced-motion: reduce) { .r-badge__rays { animation: none; } }
 .r-door__name { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: -0.06em; font-size: clamp(30px, 3.2vw, 50px); line-height: 0.95; }
 .r-door__name .r-em { transition: color 0.35s var(--r-ease); }
 @media (max-width: 860px) {

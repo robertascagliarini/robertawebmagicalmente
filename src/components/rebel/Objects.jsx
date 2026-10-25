@@ -135,3 +135,26 @@ export function NatalWheel({ size = 420, color = 'currentColor', labels = [] }) 
     </svg>
   )
 }
+
+/**
+ * Sunburst "pincha aquí" badge: tapered rays that rotate slowly around a
+ * fixed two-line label. Colour follows `currentColor`.
+ */
+const RAYS = Array.from({ length: 36 }, (_, i) => {
+  const a = (i * 10 - 90) * Math.PI / 180
+  const t = 0.07 // half-width of the ray's outer end, in radians
+  const p = (r, d) => `${(50 + r * Math.cos(a + d)).toFixed(2)},${(50 + r * Math.sin(a + d)).toFixed(2)}`
+  return `${p(31, -0.012)} ${p(31, 0.012)} ${p(48, t)} ${p(48, -t)}`
+})
+
+export function ClickBadge({ label, size = 76, className = '' }) {
+  const [first, ...rest] = label.split(' ')
+  return (
+    <span className={`r-badge ${className}`} style={{ width: size, height: size }} aria-hidden="true">
+      <svg viewBox="0 0 100 100" className="r-badge__rays">
+        {RAYS.map((pts, i) => <polygon key={i} points={pts} fill="currentColor" />)}
+      </svg>
+      <span className="r-badge__label">{first}<br />{rest.join(' ')}</span>
+    </span>
+  )
+}

@@ -1,6 +1,6 @@
 import { CLIENT, getProgram, freebieCta } from '../config/client.js'
 import { Reveal, Photo, Btn, Statement, InlineSparkle } from '../components/rebel/Blocks.jsx'
-import { Sparkle } from '../components/rebel/Objects.jsx'
+import { Sparkle, ClickBadge } from '../components/rebel/Objects.jsx'
 
 const bms = getProgram('bms')
 const lab = getProgram('lab')
@@ -108,6 +108,7 @@ export default function Home() {
               <Reveal key={c.href} delay={i * 90}>
                 <a href={c.href} className="r-door">
                   <span className="r-door__label">{c.label}</span>
+                  <ClickBadge label={CLIENT.ui.clickHere} className="r-door__badge" />
                   <span className="r-door__name">{c.name}</span>
                 </a>
               </Reveal>
