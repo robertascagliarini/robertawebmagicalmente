@@ -1,5 +1,5 @@
 import { CLIENT, getProgram, freebieCta } from '../config/client.js'
-import { Reveal, Photo, Btn } from '../components/rebel/Blocks.jsx'
+import { Reveal, Photo, Btn, Statement, InlineSparkle } from '../components/rebel/Blocks.jsx'
 import { Moon } from '../components/rebel/Objects.jsx'
 
 const bms = getProgram('bms')
@@ -21,8 +21,8 @@ function Eyebrow({ children, style }) {
 
 const HERO_CARDS = [
   { label: 'Empieza gratis', name: <>Recursos <Em>gratuitos</Em></>, href: '#recursos' },
-  { label: 'Mentoría', name: <>Black Moon <Em>Strategy</Em></>, href: '#black-moon' },
-  { label: 'Membresía de creación de contenido', name: <>Content <Em>Lab</Em></>, href: '#content-lab' },
+  { label: 'Mentoría para crear tu marca personal', name: <>Black Moon <Em>Strategy</Em></>, href: '#black-moon' },
+  { label: 'Membresía para crear tu contenido', name: <>Content <Em>Lab</Em></>, href: '#content-lab' },
 ]
 
 const MARQUEE = [
@@ -39,6 +39,12 @@ const FOR_YOU = [
   'Ya tienes un negocio y sientes que tu comunicación no representa quién eres.',
   'Quieres ganar visibilidad sin imitar fórmulas de marketing que no encajan contigo.',
   'Buscas autonomía económica y libertad profesional, con estrategia y acompañamiento.',
+]
+
+const TE_SUENA = [
+  'Intentas publicar en Instagram, pero con cero resultados.',
+  'Saltas de un curso a otro intentando aprender marketing.',
+  'Pruebas estrategias, pero al final ninguna funciona para ti.',
 ]
 
 const METHODS = [
@@ -92,27 +98,25 @@ export default function Home() {
       <section id="inicio" className="r-sec r-dark r-hero r-hero--photo">
         <Photo src={CLIENT.photos.roberta} alt={`Retrato de ${CLIENT.legalName}`} position="50% 0%" className="r-hero__photo" />
         <div className="r-wrap">
-          <div className="r-hero__grid">
-            <div>
-              <Reveal>
-                <h1 className="r-display r-lg r-hero__title">
-                  Existe una forma de construir tu negocio después de los 40 que no exige que lo sacrifiques todo por él.
-                </h1>
-              </Reveal>
-              <Reveal delay={140}>
-                <p className="r-lead" style={{ marginTop: '36px', maxWidth: '560px' }}>
-                  Ayudo a mujeres con experiencia, talento y ganas de reinventarse a convertir lo que saben y lo que son en un negocio rentable, auténtico y sostenible.
-                </p>
-              </Reveal>
-            </div>
-            <div className="r-hero__moon">
-              <Moon size={480} />
-            </div>
+          <div className="r-hero__center">
+            <Reveal>
+              <h1 className="r-display r-lg r-hero__title">
+                Existe una forma de construir tu negocio después de los 40 que no exige que lo sacrifiques todo por él.
+              </h1>
+            </Reveal>
+            <Reveal delay={140}>
+              <p className="r-lead" style={{ marginTop: '32px' }}>
+                Ayudo a mujeres con experiencia, talento y ganas de reinventarse a convertir lo que saben y lo que son en un negocio rentable, auténtico y sostenible.
+              </p>
+            </Reveal>
+            <Reveal delay={200}>
+              <p className="r-hand" style={{ marginTop: '16px' }}>Astrobranding · Marketing energético</p>
+            </Reveal>
           </div>
 
-          <Reveal delay={200} className="r-hero__tagline">
-            <p className="r-hand">Astrobranding · Marketing energético</p>
-          </Reveal>
+          <div className="r-hero__moon">
+            <Moon size={360} />
+          </div>
 
           <div className="r-hero__cards">
             {HERO_CARDS.map((c, i) => (
@@ -149,7 +153,7 @@ export default function Home() {
           <div className="r-head-split">
             <Reveal><h2 className="r-display r-xl">Esto es para ti <Em>si…</Em></h2></Reveal>
             <Reveal delay={100}>
-              <p className="r-lead">Tienes más de 40 años, una trayectoria que vale oro y la sensación de que ha llegado el momento de construir algo propio.</p>
+              <p className="r-lead">Tienes más de 40 años, una experiencia que vale oro y la sensación de que ha llegado el momento de construir algo propio.</p>
             </Reveal>
           </div>
           <ol className="r-numlist">
@@ -163,10 +167,15 @@ export default function Home() {
         </div>
       </section>
 
+      {/* 3b · ¿Te suena esto? */}
+      <Statement hand="¿Te suena esto?" typed={TE_SUENA}>
+        Estás haciendo todo lo que <InlineSparkle /> crees que <i>“deberías”</i> hacer para que tu negocio funcione.
+      </Statement>
+
       {/* 4 · Mi metodología */}
       <section id="sobre" className="r-sec r-dark r-pad r-rule-top">
         <div className="r-wrap">
-          <Reveal><Eyebrow>Mi metodología</Eyebrow></Reveal>
+          <Reveal><Eyebrow>Mi método</Eyebrow></Reveal>
           <Reveal delay={80}>
             <h2 className="r-display r-xl">
               Astrobranding<br />

@@ -2,12 +2,11 @@ import { useEffect, useState } from 'react'
 import { CLIENT, getProgram } from '../../config/client.js'
 import Wordmark from './Wordmark.jsx'
 import Social from './Social.jsx'
-import { Vinyl } from './Objects.jsx'
 
 /**
  * SiteHeader — fixed black bar: wordmark left, anchor menu centre, pink CTA
  * right (items with children open a dropdown on hover/focus). Below 1024px the menu collapses into the round "ABRIR MENÚ" button
- * and the full-screen split overlay. The spinning vinyl links to Darkroom.
+ * and the full-screen split overlay. The animated crescent links to Darkroom.
  */
 export default function SiteHeader() {
   const [open, setOpen] = useState(false)
@@ -54,7 +53,7 @@ export default function SiteHeader() {
           <span dangerouslySetInnerHTML={{ __html: (open ? CLIENT.ui.closeMenuShort : CLIENT.ui.openMenuShort).replace(' ', '<br/>') }} />
         </button>
         <a href={darkroom.href} className="r-circle r-vinyl" aria-label={CLIENT.ui.listenDarkroom}>
-          <Vinyl size={45} />
+          <span className="r-crescent" aria-hidden="true"><span className="r-crescent__shadow" /></span>
         </a>
       </div>
 

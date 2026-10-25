@@ -6,6 +6,7 @@
 export const CLIENT = {
   // ── Identity ──────────────────────────────────────────────
   name: 'Magicalmente',
+  wordmark: 'MagicalMente', // how the logo spells it
   tagline: 'Marca personal · Astrobranding · Marketing energético',
   menuBlurb: [
     'Estructura, marca y contenido — sin tener que hacerlo sola, y sin traicionar quién eres para conseguirlo.',
