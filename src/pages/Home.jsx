@@ -88,22 +88,28 @@ const FINAL_CTAS = [
 export default function Home() {
   return (
     <>
+      {/* 0 · Foto */}
+      <section className="r-sec r-dark r-hero-photo">
+        <Photo src={CLIENT.photos.roberta} alt={`Retrato de ${CLIENT.legalName}`} position="50% 22%" style={{ position: 'absolute', inset: 0 }} />
+      </section>
+
       {/* 1 · Hero */}
       <section id="inicio" className="r-sec r-dark r-hero">
         <div className="r-wrap">
           <div className="r-hero__grid">
             <div>
               <Reveal>
-                <h1 className="r-display r-xxl r-hero__title">
-                  <span>Lo que sabes.</span>
-                  <span>Lo que eres.</span>
-                  <span><Em>Tu negocio.</Em></span>
+                <h1 className="r-display r-lg r-hero__title">
+                  Existe una forma de construir tu negocio después de los 40 que no exige que lo sacrifiques todo por él.
                 </h1>
               </Reveal>
               <Reveal delay={140}>
                 <p className="r-lead" style={{ marginTop: '36px', maxWidth: '560px' }}>
                   Ayudo a mujeres con experiencia, talento y ganas de reinventarse a convertir lo que saben y lo que son en un negocio rentable, auténtico y sostenible.
                 </p>
+              </Reveal>
+              <Reveal delay={200}>
+                <p className="r-hand" style={{ marginTop: '28px' }}>Astrobranding · Marketing energético</p>
               </Reveal>
             </div>
             <div className="r-hero__moon">

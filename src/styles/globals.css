@@ -802,6 +802,7 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 .r-hero { padding: clamp(56px, 7vw, 100px) 0 clamp(40px, 5vw, 64px); }
 .r-hero__grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
 .r-hero__title span { display: block; }
+.r-hero-photo { position: relative; height: clamp(420px, 88vh, 920px); }
 .r-hero__moon { position: relative; display: flex; justify-content: center; }
 /* Moon: lit disc + dark disc that slides with scroll (see Moon in Objects.jsx) */
 .r-moon { position: relative; width: 100%; aspect-ratio: 1 / 1; }

@@ -140,14 +140,18 @@ export function NatalWheel({ size = 420, color = 'currentColor', labels = [] }) 
 /**
  * Moon whose phase follows the scroll: two same-size discs, the dark one
  * slides right over the lit one (clipped by overflow: hidden), going from
- * a thin crescent at the top to nearly full after `distance` px.
+ * a thin crescent when the moon enters the viewport to nearly full after
+ * `distance` more px of scroll.
  */
 export function Moon({ size = 460, from = 18, to = 88, distance = 900 }) {
+  const wrap = useRef(null)
   const shadow = useRef(null)
 
   useEffect(() => {
     const onScroll = () => {
-      const p = Math.min(1, window.scrollY / distance)
+      if (!wrap.current) return
+      const entered = window.innerHeight - wrap.current.getBoundingClientRect().top
+      const p = Math.min(1, Math.max(0, entered / distance))
       if (shadow.current) shadow.current.style.transform = `translateX(${from + p * (to - from)}%)`
     }
     onScroll()
@@ -156,7 +160,7 @@ export function Moon({ size = 460, from = 18, to = 88, distance = 900 }) {
   }, [from, to, distance])
 
   return (
-    <div className="r-moon" style={{ maxWidth: size }} aria-hidden="true">
+    <div ref={wrap} className="r-moon" style={{ maxWidth: size }} aria-hidden="true">
       <div className="r-moon__disc">
         <div ref={shadow} className="r-moon__shadow" style={{ transform: `translateX(${from}%)` }} />
       </div>
