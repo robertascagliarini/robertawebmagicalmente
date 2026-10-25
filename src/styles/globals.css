@@ -907,10 +907,6 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 @keyframes r-twinkle { 0%, 100% { transform: rotate(0deg) scale(1); opacity: 1; } 50% { transform: rotate(45deg) scale(0.72); opacity: 0.75; } }
 @media (prefers-reduced-motion: reduce) { .r-star, .r-star:hover, .r-numlist li:hover .r-star, .r-stars li:hover .r-star { animation: none; } }
 .r-stars__hand { font-size: 1.05em; transform: rotate(-2deg); margin-left: 0.15em; }
-.r-brandname { font-family: var(--font-wordmark); font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--accent); }
-.r-pillars { border-top: var(--r-line); padding-top: 32px; margin-top: clamp(64px, 8vw, 110px); }
-.r-pillars__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 32px; }
-@media (max-width: 860px) { .r-pillars__cards { grid-template-columns: 1fr; } }
 /* Y aun así: three statements */
 .r-three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: clamp(40px, 5vw, 64px); }
 .r-three__item { border: 1px solid var(--primary); border-radius: var(--radius-lg); padding: clamp(24px, 2.6vw, 36px); }

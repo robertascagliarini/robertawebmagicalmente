@@ -54,12 +54,6 @@ const Y_AUN_ASI = [
   ['Tu misión es estar al servicio de los demás, ', 'pero el marketing te supera. Te suena complicado, y encima el que has conocido hasta ahora es demasiado masculino, enfocado a la venta agresiva… y tú no te reconoces ahí.'],
 ]
 
-const PILLARS = [
-  { n: '01', title: 'Identidad y estructura de marca', body: 'Construimos tu marca a 360°: desde tu identidad y tu posicionamiento, hasta el funnel completo de tu oferta. Pasas de tener ideas sueltas a convertirlas en un negocio con estructura real.' },
-  { n: '02', title: 'Estrategia de contenido', body: 'Te enseño a sacarle partido a todo lo que eres. Tus dones, tu forma particular de hacer las cosas, tu manera de hablar, y a comunicarlo bien, para que no estés improvisando qué decir cada día y se convierta en algo que realmente te trae clientes.' },
-  { n: '03', title: 'Comunidad y acompañamiento', body: 'No lo haces sola. Caminas junto a otras mujeres que están viviendo exactamente lo mismo que tú. Y caminas con alguien que te sostiene en todo el proceso: yo.' },
-]
-
 const RETO_INCLUDES = [
   'Una propuesta de contenido por día',
   'Un audio training diario',
@@ -200,38 +194,37 @@ export default function Home() {
               </Reveal>
             </ul>
           </div>
-
-          <div className="r-pillars">
-            <Reveal><h3 className="r-display r-md">Los 3 pilares de <span className="r-brandname">{CLIENT.wordmark}</span></h3></Reveal>
-            <div className="r-pillars__cards">
-              {PILLARS.map((c, i) => (
-                <Reveal key={c.n} delay={i * 90} className="r-mcard">
-                  <span className="r-num">{c.n}</span>
-                  <p className="r-mcard__title"><Em>{c.title}</Em></p>
-                  <p className="r-text">{c.body}</p>
-                </Reveal>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
       {/* 5 · Servicios */}
       <section id="servicios" className="r-sec r-light r-pad">
         <div className="r-wrap">
-          <div className="r-two r-two--cards">
+          <Reveal><h2 className="r-display r-xl">Empieza a hacer <Em>magia</Em> con tu negocio</h2></Reveal>
+          <div className="r-two r-two--cards" style={{ marginTop: 'clamp(40px, 5vw, 64px)' }}>
             <Reveal id="black-moon" className="r-svc r-svc--dark">
               <Eyebrow>01 · Mentoría privada</Eyebrow>
               <h3 className="r-display r-lg r-svc__title">Black Moon <Em>Strategy</Em></h3>
-              <p className="r-text">Una mentoría privada de estrategia de marca personal para transformar tu identidad, tu experiencia y tu potencial en una marca sólida, diferenciada y alineada con el negocio que quieres construir.</p>
+              <p className="r-text">Una mentoría privada de estrategia de marca personal para transformar tu identidad, tu experiencia y tu potencial, partiendo de tu carta natal, en una marca sólida, diferenciada y alineada con el negocio que quieres construir.</p>
               <div className="r-svc__cta"><Btn href={bms.href} variant="pink">Descubre Black Moon Strategy →</Btn></div>
             </Reveal>
             <Reveal id="content-lab" delay={100} className="r-svc">
-              <Eyebrow>02 · Acompañamiento y comunidad</Eyebrow>
+              <Eyebrow>02 · Laboratorio de creación de contenido en Instagram</Eyebrow>
               <h3 className="r-display r-lg r-svc__title">Content <Em>Lab</Em></h3>
-              <p className="r-text">Pasa de publicar de forma improvisada o agotadora a tener un sistema de comunicación coherente con tu marca, con formación y apoyo para implementarlo.</p>
-              <p className="r-text" style={{ marginTop: '1.1em' }}>Dentro encontrarás una <strong>estrategia de contenido</strong> para organizar tu comunicación según tus objetivos de marca, <strong>masterclasses de Instagram</strong> sobre formatos, ganchos y novedades, <strong>acompañamiento semanal</strong> para resolver dudas y avanzar, y una <strong>comunidad</strong> de mujeres que trabajan en objetivos parecidos a los tuyos.</p>
+              <p className="r-text">Una membresía para dejar de publicar de forma improvisada y agotadora y crear una estrategia de comunicación coherente con tu voz de marca, con formación semanal, acompañamiento y una comunidad de mujeres como tú.</p>
               <div className="r-svc__cta"><Btn href={lab.href} variant="dark">Descubre Content Lab →</Btn></div>
+            </Reveal>
+            <Reveal delay={60} className="r-svc">
+              <Eyebrow>03 · Reto gratuito</Eyebrow>
+              <h3 className="r-display r-lg r-svc__title">Reto de <Em>visibilidad</Em></h3>
+              <p className="r-text">Siete días para dejar de esconder tu marca y empezar a comunicar lo que te hace única, con una propuesta de contenido y un audio training cada día para que publiques con intención.</p>
+              <div className="r-svc__cta"><Btn href="#reto" variant="dark">Descubre el reto →</Btn></div>
+            </Reveal>
+            <Reveal delay={160} className="r-svc r-svc--dark">
+              <Eyebrow>04 · Consultoría gratuita</Eyebrow>
+              <h3 className="r-display r-lg r-svc__title">Consultoría de <Em>visibilidad</Em></h3>
+              <p className="r-text">Treinta minutos para descubrir qué puede estar fallando en tu perfil de Instagram y cuáles son los primeros cambios que puedes aplicar para mejorar tu imagen de marca.</p>
+              <div className="r-svc__cta"><Btn href="#consultoria" variant="pink">Descubre la consultoría →</Btn></div>
             </Reveal>
           </div>
         </div>
@@ -280,14 +273,14 @@ export default function Home() {
           <div className="r-two r-two--founder">
             <div>
               <Reveal><Eyebrow>La fundadora</Eyebrow></Reveal>
-              <Reveal delay={80}><h2 className="r-display r-xl">Hola, soy <Em>[tu nombre]</Em></h2></Reveal>
+              <Reveal delay={80}><h2 className="r-display r-xl">Hola, soy <Em>{CLIENT.legalName.split(' ')[0]}</Em></h2></Reveal>
               <Reveal delay={140}>
                 <p className="r-lead" style={{ marginTop: '32px' }}>Combino estrategia de negocio, marca personal, marketing, comunicación, psicología y astrología aplicada al branding para que construyas un proyecto profesional que refleje quién eres y te dé autonomía y libertad.</p>
-                <Pending>nombre, trayectoria y experiencia de la fundadora</Pending>
+                <div style={{ marginTop: '32px' }}><Btn href="/sobre-mi" variant="outline">Te cuento mi historia (versión larga) →</Btn></div>
               </Reveal>
             </div>
             <Reveal delay={120}>
-              <Photo src={CLIENT.photos.roberta} alt="Retrato de la fundadora" position="50% 22%" className="r-founder__photo" />
+              <Photo src={CLIENT.photos.roberta} alt={`Retrato de ${CLIENT.legalName}`} position="50% 22%" className="r-founder__photo" />
             </Reveal>
           </div>
         </div>
