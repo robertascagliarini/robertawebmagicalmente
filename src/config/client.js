@@ -52,13 +52,23 @@ export const CLIENT = {
   nav: {
     ctaLabel: 'Únete gratis al reto',
     ctaHref: '/#recursos',
-    // Anclas de la home; el prefijo "/" hace que funcionen desde cualquier página
+    // `children` → submenú desplegable. Las anclas llevan "/" para funcionar desde cualquier página.
     links: [
-      { to: '/#sobre',        label: 'Sobre' },
-      { to: '/#black-moon',   label: 'Black Moon Strategy' },
-      { to: '/#content-lab',  label: 'Content Lab' },
-      { to: '/#recursos',     label: 'Recursos' },
-      { to: '/#contacto',     label: 'Contacto' },
+      {
+        to: '/#servicios', label: 'Servicios',
+        children: [
+          { to: '/trabaja-conmigo/black-moon-strategy', label: 'Black Moon Strategy' },
+          { to: '/trabaja-conmigo/the-content-lab',     label: 'Content Lab' },
+        ],
+      },
+      {
+        to: '/#recursos', label: 'Recursos gratuitos',
+        children: [
+          { to: '/#reto',        label: 'Reto de visibilidad' },
+          { to: '/#consultoria', label: 'Consultoría de visibilidad' },
+        ],
+      },
+      { to: '/sobre-mi', label: 'Sobre mí' },
     ],
   },
 

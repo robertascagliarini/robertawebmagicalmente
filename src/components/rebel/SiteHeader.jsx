@@ -6,7 +6,7 @@ import { Vinyl } from './Objects.jsx'
 
 /**
  * SiteHeader — fixed black bar: wordmark left, anchor menu centre, pink CTA
- * right. Below 1024px the menu collapses into the round "ABRIR MENÚ" button
+ * right (items with children open a dropdown on hover/focus). Below 1024px the menu collapses into the round "ABRIR MENÚ" button
  * and the full-screen split overlay. The spinning vinyl links to Darkroom.
  */
 export default function SiteHeader() {
@@ -28,7 +28,16 @@ export default function SiteHeader() {
           <Wordmark />
         </a>
         <nav className="r-header__nav" aria-label="Principal">
-          {CLIENT.nav.links.map(l => <a key={l.to} href={l.to}>{l.label}</a>)}
+          {CLIENT.nav.links.map(l => l.children ? (
+            <div key={l.to} className="r-dd">
+              <a href={l.to} aria-haspopup="true">{l.label} <span className="r-dd__caret" aria-hidden="true">▾</span></a>
+              <div className="r-dd__panel">
+                {l.children.map(c => <a key={c.to} href={c.to}>{c.label}</a>)}
+              </div>
+            </div>
+          ) : (
+            <a key={l.to} href={l.to}>{l.label}</a>
+          ))}
         </nav>
         <a href={CLIENT.nav.ctaHref} className="r-header__cta">{CLIENT.nav.ctaLabel}</a>
       </header>
@@ -65,6 +74,13 @@ export default function SiteHeader() {
           {CLIENT.nav.links.map(l => (
             <div key={l.to}>
               <a href={l.to} className="r-menu__link" onClick={() => setOpen(false)}>{l.label}</a>
+              {l.children && (
+                <div className="r-menu__sub" style={{ marginTop: '10px' }}>
+                  {l.children.map(c => (
+                    <a key={c.to} href={c.to} onClick={() => setOpen(false)}>→ {c.label}</a>
+                  ))}
+                </div>
+              )}
             </div>
           ))}
           <div style={{ marginTop: 'auto', paddingTop: '48px' }}>

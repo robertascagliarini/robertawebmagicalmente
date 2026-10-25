@@ -760,7 +760,22 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 }
 
 /* Header nav (desktop) */
-.r-header__nav { display: flex; gap: clamp(18px, 2vw, 34px); }
+.r-header__nav { display: flex; align-items: center; gap: clamp(18px, 2vw, 34px); }
+.r-dd { position: relative; }
+.r-dd > a { display: inline-flex; align-items: center; gap: 6px; height: var(--r-header); }
+.r-dd__caret { display: inline-block; font-size: 10px; transition: transform 0.25s var(--r-ease); }
+.r-dd:hover .r-dd__caret, .r-dd:focus-within .r-dd__caret { transform: rotate(180deg); }
+.r-dd__panel {
+  position: absolute; top: 100%; left: -18px; min-width: 260px;
+  display: flex; flex-direction: column;
+  background: var(--primary); border: var(--r-line); border-top: 1px solid var(--accent);
+  padding: 8px 0;
+  opacity: 0; pointer-events: none; transform: translateY(-6px);
+  transition: opacity 0.25s var(--r-ease), transform 0.25s var(--r-ease);
+}
+.r-dd:hover .r-dd__panel, .r-dd:focus-within .r-dd__panel { opacity: 1; pointer-events: auto; transform: none; }
+.r-header__nav .r-dd__panel a { padding: 12px 18px; white-space: nowrap; }
+.r-header__nav .r-dd__panel a:hover, .r-header__nav .r-dd__panel a:focus-visible { background: rgba(236,31,128,0.08); }
 .r-header__nav a, .r-header__cta {
   font-family: var(--font-display); font-weight: 700; font-size: 13px; text-transform: uppercase; color: var(--cream);
   transition: color 0.2s var(--r-ease);
@@ -788,7 +803,6 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 .r-hero__grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
 .r-hero__title span { display: block; }
 .r-hero__moon { position: relative; display: flex; justify-content: center; }
-.r-hero__tag { position: absolute; left: 4%; top: 12%; z-index: 2; border: 1px solid var(--accent); }
 .r-hero__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: clamp(48px, 6vw, 88px); }
 .r-hero__cards > * { min-width: 0; }
 .r-door {
