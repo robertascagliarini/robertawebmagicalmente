@@ -36,7 +36,7 @@
    ZONE 2 — TYPOGRAPHY
    ═══════════════════════════════════════════════════════════════ */
   --font-display:  Arial, 'Arimo', 'Helvetica Neue', Helvetica, sans-serif; /* heavy grotesk headings (700) */
-  --font-wordmark: 'Gloock', 'Didot', 'Bodoni 72', serif;                  /* high-contrast display wordmark */
+  --font-wordmark: 'Bellefair', 'Didot', 'Bodoni 72', serif;               /* deco high-contrast wordmark */
   --font-hand:     'Permanent Marker', 'Marker Felt', cursive;              /* handwritten notes */
   --font-script:   'Allura', 'Brush Script MT', cursive;
   --font-serif:    'Cormorant Garamond', Georgia, serif;
@@ -581,7 +581,7 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 .r-vinyl:hover { background: none; }
 /* Crescent badge (replaces the vinyl): the black disc drifts so the crescent breathes */
 .r-crescent { display: block; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; position: relative; background: var(--accent); border: 1px solid var(--accent); }
-.r-crescent__shadow { position: absolute; inset: -1px; border-radius: 50%; background: var(--primary); transform: translateX(28%); animation: r-crescent 5s var(--r-ease) infinite alternate; }
+.r-crescent__shadow { position: absolute; inset: -1px; border-radius: 50%; background: var(--primary); transform: translateX(28%); animation: r-crescent 1.6s var(--r-ease) infinite alternate; }
 @keyframes r-crescent { from { transform: translate(22%, -8%); } to { transform: translate(40%, -14%); } }
 .r-vinyl:hover .r-crescent__shadow { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) { .r-crescent__shadow { animation: none; } }
@@ -819,13 +819,6 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 .r-hero--photo > .r-wrap { position: relative; z-index: 2; }
 .r-hero__center { max-width: 980px; margin: 0 auto; text-align: center; }
 .r-hero__center .r-lead { max-width: 640px; margin-left: auto; margin-right: auto; }
-.r-hero--photo .r-hero__moon { margin-top: clamp(48px, 6vw, 80px); }
-.r-hero__moon { position: relative; display: flex; justify-content: center; }
-/* Moon: lit disc + dark disc that slides with scroll (see Moon in Objects.jsx) */
-.r-moon { position: relative; width: 100%; aspect-ratio: 1 / 1; }
-.r-moon__disc { position: absolute; inset: 0; border-radius: 50%; background: #E9C3BB; overflow: hidden; }
-.r-moon__shadow { position: absolute; inset: -1px; border-radius: 50%; background: var(--primary); will-change: transform; }
-.r-moon__ring { position: absolute; inset: -6%; border-radius: 50%; border: 1px solid rgba(245, 243, 239, 0.25); }
 .r-hero__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: clamp(48px, 6vw, 88px); }
 .r-hero__cards > * { min-width: 0; }
 .r-door {
@@ -848,7 +841,6 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 .r-door__name .r-em { transition: color 0.35s var(--r-ease); }
 @media (max-width: 860px) {
   .r-hero__grid { grid-template-columns: 1fr; }
-  .r-hero__moon { max-width: 340px; margin: 0 auto; }
   .r-hero__cards { grid-template-columns: 1fr; }
   .r-door { min-height: 140px; }
 }
@@ -884,19 +876,26 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 @media (max-width: 640px) { .r-numlist li { grid-template-columns: 44px 1fr; } }
 
 /* Methods */
-.r-methods { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px); margin-top: clamp(64px, 8vw, 110px); }
-.r-method { border-top: var(--r-line); padding-top: 32px; }
-.r-method__head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
-.r-method__pointer { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cream); transition: color 0.2s var(--r-ease), transform 0.2s var(--r-ease); display: inline-block; }
-.r-method__pointer:hover, .r-method__pointer:focus-visible { color: var(--accent); transform: translateX(4px); outline: none; }
-.r-method__pointer:active { opacity: 0.7; }
-.r-method__cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: 32px; }
+/* Mi método: star bullets + pillars */
+.r-stars { list-style: none; margin-top: clamp(28px, 3vw, 44px); display: grid; gap: 22px; }
+.r-stars li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 14px; align-items: start; font-family: var(--font-body); font-size: clamp(18px, 1.6vw, 23px); line-height: 1.5; }
+.r-stars__icon { width: 26px; height: 26px; margin-top: 3px; animation: r-twinkle 2.8s var(--r-ease) infinite; }
+@keyframes r-twinkle { 0%, 100% { transform: rotate(0deg) scale(1); opacity: 1; } 50% { transform: rotate(45deg) scale(0.72); opacity: 0.75; } }
+@media (prefers-reduced-motion: reduce) { .r-stars__icon { animation: none; } }
+.r-stars__hand { font-size: 1.05em; transform: rotate(-2deg); margin-left: 0.15em; }
+.r-brandname { font-family: var(--font-wordmark); font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--accent); }
+.r-pillars { border-top: var(--r-line); padding-top: 32px; margin-top: clamp(64px, 8vw, 110px); }
+.r-pillars__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; margin-top: 32px; }
+@media (max-width: 860px) { .r-pillars__cards { grid-template-columns: 1fr; } }
+/* Y aun así: three statements */
+.r-three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px); margin-top: clamp(48px, 6vw, 88px); }
+.r-three__item { border-top: var(--r-line); padding-top: 24px; }
+.r-three__item .r-lead { margin-top: 18px; }
+@media (max-width: 860px) { .r-three { grid-template-columns: 1fr; } }
 .r-mcard { background: var(--primary-mid); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-md); transition: transform 0.3s var(--r-ease), border-color 0.3s var(--r-ease); }
 .r-mcard:hover { transform: translateY(-4px); border-color: var(--accent); }
 .r-mcard__title { font-size: clamp(28px, 2.6vw, 38px); line-height: 1; margin: 14px 0 12px; }
 .r-mcard .r-text { color: var(--ink-mid); font-size: 15px; line-height: 1.6; }
-@media (max-width: 960px) { .r-methods { grid-template-columns: 1fr; } }
-@media (max-width: 520px) { .r-method__cards { grid-template-columns: 1fr; } }
 
 /* Service + resource cards */
 .r-svc, .r-free {

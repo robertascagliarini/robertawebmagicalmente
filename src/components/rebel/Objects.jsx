@@ -3,7 +3,6 @@
  * photographed objects (cassettes, playing card, vinyl, flywheel).
  * All are monochrome + pink so they sit on any section.
  */
-import { useEffect, useRef } from 'react'
 
 export function Vinyl({ size = 45, spin = true }) {
   return (
@@ -134,37 +133,5 @@ export function NatalWheel({ size = 420, color = 'currentColor', labels = [] }) 
       <path d="M60 110 A165 165 0 0 1 150 28" fill="none" stroke={color} strokeWidth="1.5" transform="translate(-14 -10)" />
       <path d="M340 290 A165 165 0 0 1 250 372" fill="none" stroke={color} strokeWidth="1.5" transform="translate(14 10)" />
     </svg>
-  )
-}
-
-/**
- * Moon whose phase follows the scroll: two same-size discs, the dark one
- * slides right over the lit one (clipped by overflow: hidden), going from
- * a thin crescent when the moon enters the viewport to nearly full after
- * `distance` more px of scroll.
- */
-export function Moon({ size = 460, from = 18, to = 88, distance = 900 }) {
-  const wrap = useRef(null)
-  const shadow = useRef(null)
-
-  useEffect(() => {
-    const onScroll = () => {
-      if (!wrap.current) return
-      const entered = window.innerHeight - wrap.current.getBoundingClientRect().top
-      const p = Math.min(1, Math.max(0, entered / distance))
-      if (shadow.current) shadow.current.style.transform = `translateX(${from + p * (to - from)}%)`
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [from, to, distance])
-
-  return (
-    <div ref={wrap} className="r-moon" style={{ maxWidth: size }} aria-hidden="true">
-      <div className="r-moon__disc">
-        <div ref={shadow} className="r-moon__shadow" style={{ transform: `translateX(${from}%)` }} />
-      </div>
-      <div className="r-moon__ring" />
-    </div>
   )
 }

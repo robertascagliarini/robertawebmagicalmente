@@ -1,6 +1,6 @@
 import { CLIENT, getProgram, freebieCta } from '../config/client.js'
 import { Reveal, Photo, Btn, Statement, InlineSparkle } from '../components/rebel/Blocks.jsx'
-import { Moon } from '../components/rebel/Objects.jsx'
+import { Sparkle } from '../components/rebel/Objects.jsx'
 
 const bms = getProgram('bms')
 const lab = getProgram('lab')
@@ -47,27 +47,16 @@ const TE_SUENA = [
   'Pruebas estrategias, pero al final ninguna funciona para ti.',
 ]
 
-const METHODS = [
-  {
-    title: 'Astrobranding',
-    label: 'Identidad y estrategia',
-    body: 'Leemos tu carta natal como mapa de tu identidad para construir una marca, una oferta y un posicionamiento que encajen contigo.',
-    pointer: { label: 'Black Moon Strategy', href: '#black-moon' },
-    cards: [
-      { n: '01', title: 'Identidad', body: 'Descubrir qué te hace única y cómo trasladarlo a tu marca.' },
-      { n: '02', title: 'Estrategia', body: 'Convertir esa identidad en un posicionamiento y una propuesta de negocio coherentes.' },
-    ],
-  },
-  {
-    title: 'Marketing energético',
-    label: 'Comunicación y acompañamiento',
-    body: 'Marketing que no se guía solo por tendencias ni plantillas genéricas. Se adapta a la voz de marca escrita en tu carta natal y aprovecha las corrientes energéticas más favorables para tus objetivos de venta: una ventaja estratégica frente al marketing genérico.',
-    pointer: { label: 'Content Lab', href: '#content-lab' },
-    cards: [
-      { n: '03', title: 'Comunicación', body: 'Desarrollar un sistema de contenido alineado con tu marca y tus objetivos.' },
-      { n: '04', title: 'Acompañamiento', body: 'Implementar con mentoría, formación y comunidad.' },
-    ],
-  },
+const Y_AUN_ASI = [
+  'Tienes resultados buenísimos con tus clientas… pero no consigues atraer a más gente, no estás percibiendo lo que realmente mereces por el trabajo que haces y sigues dependiendo del boca a boca, o de que alguien te recomiende.',
+  'Tienes ideas geniales para crear, pero no sabes cómo bajarlas a tierra, estructurarlas y venderlas de forma fácil.',
+  'Tu misión es estar al servicio de los demás, pero el marketing te supera. Te suena complicado, y encima el que has conocido hasta ahora es demasiado masculino, enfocado a la venta agresiva… y tú no te reconoces ahí.',
+]
+
+const PILLARS = [
+  { n: '01', title: 'Identidad y estructura de marca', body: 'Construimos tu marca a 360°: desde tu identidad y tu posicionamiento, hasta el funnel completo de tu oferta. Pasas de tener ideas sueltas a convertirlas en un negocio con estructura real.' },
+  { n: '02', title: 'Estrategia de contenido', body: 'Te enseño a sacarle partido a todo lo que eres. Tus dones, tu forma particular de hacer las cosas, tu manera de hablar, y a comunicarlo bien, para que no estés improvisando qué decir cada día y se convierta en algo que realmente te trae clientes.' },
+  { n: '03', title: 'Comunidad y acompañamiento', body: 'No lo haces sola. Caminas junto a otras mujeres que están viviendo exactamente lo mismo que tú. Y caminas con alguien que te sostiene en todo el proceso: yo.' },
 ]
 
 const RETO_INCLUDES = [
@@ -114,15 +103,11 @@ export default function Home() {
             </Reveal>
           </div>
 
-          <div className="r-hero__moon">
-            <Moon size={360} />
-          </div>
-
           <div className="r-hero__cards">
             {HERO_CARDS.map((c, i) => (
               <Reveal key={c.href} delay={i * 90}>
                 <a href={c.href} className="r-door">
-                  <span className="r-door__label">{c.label} <span aria-hidden="true">→</span></span>
+                  <span className="r-door__label">{c.label}</span>
                   <span className="r-door__name">{c.name}</span>
                 </a>
               </Reveal>
@@ -148,7 +133,7 @@ export default function Home() {
       </div>
 
       {/* 3 · Para quién es */}
-      <section className="r-sec r-light r-pad">
+      <section className="r-sec r-paper r-pad">
         <div className="r-wrap">
           <div className="r-head-split">
             <Reveal><h2 className="r-display r-xl">Esto es para ti <Em>si…</Em></h2></Reveal>
@@ -172,6 +157,21 @@ export default function Home() {
         Estás haciendo todo lo que <InlineSparkle /> crees que <i>“deberías”</i> hacer para que tu negocio funcione.
       </Statement>
 
+      {/* 3c · Y aun así */}
+      <section className="r-sec r-dark r-pad">
+        <div className="r-wrap">
+          <Reveal><h2 className="r-display r-xl">Y aun <Em>así…</Em></h2></Reveal>
+          <div className="r-three">
+            {Y_AUN_ASI.map((t, i) => (
+              <Reveal key={i} delay={i * 90} className="r-three__item">
+                <span className="r-num">{String(i + 1).padStart(2, '0')}</span>
+                <p className="r-lead">{t}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* 4 · Mi metodología */}
       <section id="sobre" className="r-sec r-dark r-pad r-rule-top">
         <div className="r-wrap">
@@ -183,35 +183,33 @@ export default function Home() {
             </h2>
           </Reveal>
 
-          <div className="r-two" style={{ marginTop: 'clamp(48px, 6vw, 88px)' }}>
+          <div style={{ marginTop: 'clamp(48px, 6vw, 88px)', maxWidth: '980px' }}>
             <Reveal>
-              <p className="r-lead r-lead--xl">Un método propio que no vas a encontrar en ningún curso genérico de marketing. Tu marca tiene que ser un reflejo exacto de quién eres, a nivel psicológico y energético.</p>
+              <p className="r-lead r-lead--xl">Un método propio que no vas a encontrar en ningún curso genérico de marketing.</p>
             </Reveal>
-            <Reveal delay={100}>
-              <p className="r-text">Por eso miro algo que nadie mira: tu carta natal. Ahí está la información que necesitamos para diseñar tu identidad, tu oferta, tu cliente ideal, tu forma de comunicar y de vender, tu relación con el dinero y tu manera de destacar en público, de forma natural, fácil y sostenible.</p>
-            </Reveal>
+            <ul className="r-stars">
+              <Reveal as="li" delay={80}>
+                <Sparkle className="r-stars__icon" color="var(--accent)" />
+                <span>Tu marca tiene que ser un reflejo exacto de quién eres, a nivel estratégico, psicológico y energético.</span>
+              </Reveal>
+              <Reveal as="li" delay={160}>
+                <Sparkle className="r-stars__icon" color="var(--accent)" style={{ animationDelay: '-1.4s' }} />
+                <span>El mapa exacto de tu negocio se encuentra en una herramienta que casi nadie mira: tu <span className="r-hand r-stars__hand">Carta Natal</span></span>
+              </Reveal>
+            </ul>
           </div>
 
-          <div className="r-methods">
-            {METHODS.map(m => (
-              <Reveal key={m.title} className="r-method">
-                <div className="r-method__head">
-                  <h3 className="r-display r-md">{m.title}</h3>
-                  <a href={m.pointer.href} className="r-method__pointer">→ {m.pointer.label}</a>
-                </div>
-                <Eyebrow style={{ marginTop: '14px' }}>{m.label}</Eyebrow>
-                <p className="r-text" style={{ marginTop: '18px' }}>{m.body}</p>
-                <div className="r-method__cards">
-                  {m.cards.map(c => (
-                    <div key={c.n} className="r-mcard">
-                      <span className="r-num">{c.n}</span>
-                      <p className="r-mcard__title"><Em>{c.title}</Em></p>
-                      <p className="r-text">{c.body}</p>
-                    </div>
-                  ))}
-                </div>
-              </Reveal>
-            ))}
+          <div className="r-pillars">
+            <Reveal><h3 className="r-display r-md">Los 3 pilares de <span className="r-brandname">{CLIENT.wordmark}</span></h3></Reveal>
+            <div className="r-pillars__cards">
+              {PILLARS.map((c, i) => (
+                <Reveal key={c.n} delay={i * 90} className="r-mcard">
+                  <span className="r-num">{c.n}</span>
+                  <p className="r-mcard__title"><Em>{c.title}</Em></p>
+                  <p className="r-text">{c.body}</p>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </div>
       </section>
