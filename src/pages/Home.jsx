@@ -160,7 +160,7 @@ export default function Home() {
       </Statement>
 
       {/* 3c · Y aun así */}
-      <section className="r-sec r-light r-pad">
+      <section className="r-sec r-light r-pad r-rule-top">
         <div className="r-wrap">
           <Reveal><h2 className="r-display r-xl">Y aun <Em>así…</Em></h2></Reveal>
           <div className="r-three">
