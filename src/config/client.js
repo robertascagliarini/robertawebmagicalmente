@@ -124,7 +124,7 @@ export const CLIENT = {
   // ── UI strings ────────────────────────────────────────────
   ui: {
     loading: 'Cargando...',
-    clickHere: 'Pincha aquí',
+    clickHere: 'Entra aquí',
     backToHome: 'Volver al inicio',
     readMore: 'Leer más',
     learnMore: 'Saber más',
