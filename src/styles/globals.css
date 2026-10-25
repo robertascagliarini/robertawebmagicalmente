@@ -892,8 +892,7 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 
 /* Numbered list */
 .r-numlist { list-style: none; border-top: 1px solid currentColor; }
-.r-numlist li { display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 16px; align-items: baseline; padding: 26px 0; border-bottom: 1px solid currentColor; }
-.r-numlist__n { font-family: var(--font-mono); font-size: 14px; letter-spacing: 0.2em; color: var(--accent); }
+.r-numlist li { display: grid; grid-template-columns: 90px minmax(0, 1fr); gap: 16px; align-items: center; padding: 26px 0; border-bottom: 1px solid currentColor; }
 .r-numlist__t { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: -0.04em; font-size: clamp(20px, 2.2vw, 32px); line-height: 1.1; }
 @media (max-width: 640px) { .r-numlist li { grid-template-columns: 44px 1fr; } }
 
@@ -901,9 +900,12 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 /* Mi método: star bullets + pillars */
 .r-stars { list-style: none; margin-top: clamp(28px, 3vw, 44px); display: grid; gap: 22px; }
 .r-stars li { display: grid; grid-template-columns: 34px minmax(0, 1fr); gap: 14px; align-items: start; font-family: var(--font-body); font-size: clamp(18px, 1.6vw, 23px); line-height: 1.5; }
-.r-stars__icon { width: 26px; height: 26px; margin-top: 3px; animation: r-twinkle 2.8s var(--r-ease) infinite; }
+/* Interactive star bullet: twinkles on its own, spins and grows when its row is hovered */
+.r-star { width: 26px; height: 26px; margin-top: 3px; animation: r-twinkle 2.8s var(--r-ease) infinite; transition: transform 0.5s var(--r-ease); cursor: default; }
+.r-star:hover, .r-numlist li:hover .r-star, .r-stars li:hover .r-star, .r-three__item:hover .r-star { animation: r-star-spin 0.9s var(--r-ease) infinite; }
+@keyframes r-star-spin { from { transform: rotate(0deg) scale(1.35); } to { transform: rotate(180deg) scale(1.35); } }
 @keyframes r-twinkle { 0%, 100% { transform: rotate(0deg) scale(1); opacity: 1; } 50% { transform: rotate(45deg) scale(0.72); opacity: 0.75; } }
-@media (prefers-reduced-motion: reduce) { .r-stars__icon { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .r-star, .r-star:hover, .r-numlist li:hover .r-star, .r-stars li:hover .r-star, .r-three__item:hover .r-star { animation: none; } }
 .r-stars__hand { font-size: 1.05em; transform: rotate(-2deg); margin-left: 0.15em; }
 .r-brandname { font-family: var(--font-wordmark); font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--accent); }
 .r-pillars { border-top: var(--r-line); padding-top: 32px; margin-top: clamp(64px, 8vw, 110px); }
@@ -911,7 +913,8 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 @media (max-width: 860px) { .r-pillars__cards { grid-template-columns: 1fr; } }
 /* Y aun así: three statements */
 .r-three { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(28px, 4vw, 56px); margin-top: clamp(48px, 6vw, 88px); }
-.r-three__item { border-top: var(--r-line); padding-top: 24px; }
+.r-three__item { padding-top: 8px; }
+.r-pink { color: var(--accent); }
 .r-three__item .r-lead { margin-top: 18px; }
 @media (max-width: 860px) { .r-three { grid-template-columns: 1fr; } }
 .r-mcard { background: var(--primary-mid); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-md); transition: transform 0.3s var(--r-ease), border-color 0.3s var(--r-ease); }

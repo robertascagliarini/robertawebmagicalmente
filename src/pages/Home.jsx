@@ -47,10 +47,11 @@ const TE_SUENA = [
   'Pruebas estrategias, pero al final ninguna funciona para ti.',
 ]
 
+// [rosa, resto]: the part before "pero" is set in accent
 const Y_AUN_ASI = [
-  'Tienes resultados buenísimos con tus clientas… pero no consigues atraer a más gente, no estás percibiendo lo que realmente mereces por el trabajo que haces y sigues dependiendo del boca a boca, o de que alguien te recomiende.',
-  'Tienes ideas geniales para crear, pero no sabes cómo bajarlas a tierra, estructurarlas y venderlas de forma fácil.',
-  'Tu misión es estar al servicio de los demás, pero el marketing te supera. Te suena complicado, y encima el que has conocido hasta ahora es demasiado masculino, enfocado a la venta agresiva… y tú no te reconoces ahí.',
+  ['Tienes resultados buenísimos con tus clientas… ', 'pero no consigues atraer a más gente, no estás percibiendo lo que realmente mereces por el trabajo que haces y sigues dependiendo del boca a boca, o de que alguien te recomiende.'],
+  ['Tienes ideas geniales para crear, ', 'pero no sabes cómo bajarlas a tierra, estructurarlas y venderlas de forma fácil.'],
+  ['Tu misión es estar al servicio de los demás, ', 'pero el marketing te supera. Te suena complicado, y encima el que has conocido hasta ahora es demasiado masculino, enfocado a la venta agresiva… y tú no te reconoces ahí.'],
 ]
 
 const PILLARS = [
@@ -145,7 +146,7 @@ export default function Home() {
           <ol className="r-numlist">
             {FOR_YOU.map((t, i) => (
               <Reveal as="li" key={i} delay={i * 50}>
-                <span className="r-numlist__n">{String(i + 1).padStart(2, '0')}</span>
+                <Sparkle className="r-star" color="var(--accent)" style={{ animationDelay: `${-i * 0.45}s` }} />
                 <span className="r-numlist__t">{t}</span>
               </Reveal>
             ))}
@@ -159,14 +160,14 @@ export default function Home() {
       </Statement>
 
       {/* 3c · Y aun así */}
-      <section className="r-sec r-dark r-pad">
+      <section className="r-sec r-light r-pad">
         <div className="r-wrap">
           <Reveal><h2 className="r-display r-xl">Y aun <Em>así…</Em></h2></Reveal>
           <div className="r-three">
-            {Y_AUN_ASI.map((t, i) => (
+            {Y_AUN_ASI.map(([pink, rest], i) => (
               <Reveal key={i} delay={i * 90} className="r-three__item">
-                <span className="r-num">{String(i + 1).padStart(2, '0')}</span>
-                <p className="r-lead">{t}</p>
+                <Sparkle className="r-star" color="var(--accent)" style={{ animationDelay: `${-i * 0.6}s` }} />
+                <p className="r-lead"><span className="r-pink">{pink}</span>{rest}</p>
               </Reveal>
             ))}
           </div>
@@ -190,11 +191,11 @@ export default function Home() {
             </Reveal>
             <ul className="r-stars">
               <Reveal as="li" delay={80}>
-                <Sparkle className="r-stars__icon" color="var(--accent)" />
+                <Sparkle className="r-star" color="var(--accent)" />
                 <span>Tu marca tiene que ser un reflejo exacto de quién eres, a nivel estratégico, psicológico y energético.</span>
               </Reveal>
               <Reveal as="li" delay={160}>
-                <Sparkle className="r-stars__icon" color="var(--accent)" style={{ animationDelay: '-1.4s' }} />
+                <Sparkle className="r-star" color="var(--accent)" style={{ animationDelay: '-1.4s' }} />
                 <span>El mapa exacto de tu negocio se encuentra en una herramienta que casi nadie mira: tu <span className="r-hand r-stars__hand">Carta Natal</span></span>
               </Reveal>
             </ul>
