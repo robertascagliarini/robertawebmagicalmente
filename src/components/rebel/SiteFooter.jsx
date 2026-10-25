@@ -1,25 +1,53 @@
-import { CLIENT } from '../../config/client.js'
-import Wordmark from './Wordmark.jsx'
-import Social from './Social.jsx'
+import { CLIENT, getProgram } from '../../config/client.js'
+
+const COLUMNS = [
+  {
+    title: 'Servicios',
+    links: [
+      { href: getProgram('bms').href, label: 'Black Moon Strategy' },
+      { href: getProgram('lab').href, label: 'Content Lab' },
+    ],
+  },
+  {
+    title: 'Gratis',
+    links: [
+      { href: '/#recursos', label: 'Reto de visibilidad' },
+      { href: '/#recursos', label: 'Consultoría 30 min' },
+    ],
+  },
+  {
+    title: 'Contacto',
+    links: [
+      { href: CLIENT.social.instagram, label: 'Instagram', external: true },
+      { href: `mailto:${CLIENT.email}`, label: 'Email' },
+    ],
+  },
+  {
+    title: 'Legal',
+    links: CLIENT.legal.links.map(l => ({ href: l.to, label: l.label })),
+  },
+]
 
 export default function SiteFooter() {
   return (
     <footer className="r-footer">
-      <div className="r-wrap" style={{ maxWidth: '1200px' }}>
-        <Wordmark width="min(1146px, 100%)" style={{ margin: '0 auto' }} />
-        <Social style={{ justifyContent: 'center', margin: '44px 0 36px' }} />
-        <p className="r-footer__legal">
-          ©{new Date().getFullYear()}{' '}
-          {CLIENT.legal.links.map((l, i) => (
-            <span key={l.to}>
-              <a href={l.to}>{l.label}</a>
-              {i < CLIENT.legal.links.length - 1 && ' | '}
-            </span>
+      <div className="r-wrap">
+        <div className="r-footer__cols">
+          {COLUMNS.map(c => (
+            <div key={c.title}>
+              <p className="r-footer__title">{c.title}</p>
+              <ul>
+                {c.links.map(l => (
+                  <li key={l.label}>
+                    <a href={l.href} {...(l.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>{l.label}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           ))}
-        </p>
-        <p className="r-footer__legal" style={{ fontSize: '12px' }}>
-          {CLIENT.legalName} · NIF {CLIENT.nif}
-        </p>
+        </div>
+        <p className="r-footer__logo" aria-hidden="true">{CLIENT.name}</p>
+        <p className="r-footer__legal">© {new Date().getFullYear()} {CLIENT.name}</p>
       </div>
     </footer>
   )

@@ -5,11 +5,11 @@ import Social from './Social.jsx'
 import { Vinyl } from './Objects.jsx'
 
 /**
- * SiteHeader — fixed black bar (wordmark left, tagline right), the round
- * "ABRIR MENÚ" button + spinning vinyl on the right edge, and the
- * full-screen split menu overlay.
+ * SiteHeader — fixed black bar: wordmark left, anchor menu centre, pink CTA
+ * right. Below 1024px the menu collapses into the round "ABRIR MENÚ" button
+ * and the full-screen split overlay. The spinning vinyl links to Darkroom.
  */
-export default function SiteHeader({ pathname = '/' }) {
+export default function SiteHeader() {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
@@ -27,13 +27,16 @@ export default function SiteHeader({ pathname = '/' }) {
         <a href="/" aria-label={CLIENT.name} style={{ display: 'block', width: 'clamp(170px, 16vw, 222px)' }}>
           <Wordmark />
         </a>
-        <span className="r-header__tag">{CLIENT.headerTagline}</span>
+        <nav className="r-header__nav" aria-label="Principal">
+          {CLIENT.nav.links.map(l => <a key={l.to} href={l.to}>{l.label}</a>)}
+        </nav>
+        <a href={CLIENT.nav.ctaHref} className="r-header__cta">{CLIENT.nav.ctaLabel}</a>
       </header>
 
       <div className="r-side">
         <button
           type="button"
-          className={`r-circle${open ? ' is-open' : ''}`}
+          className={`r-circle r-side__menu${open ? ' is-open' : ''}`}
           onClick={() => setOpen(o => !o)}
           aria-expanded={open}
           aria-controls="r-menu"
@@ -61,25 +64,11 @@ export default function SiteHeader({ pathname = '/' }) {
         <div className="r-menu__right">
           {CLIENT.nav.links.map(l => (
             <div key={l.to}>
-              <a
-                href={l.to}
-                className={`r-menu__link${l.accent ? ' r-menu__link--accent' : ''}`}
-                aria-current={(l.end ? pathname === l.to : pathname.startsWith(l.to)) ? 'page' : undefined}
-                onClick={() => setOpen(false)}
-              >
-                {l.label}
-              </a>
-              {l.to === '/trabaja-conmigo' && (
-                <div className="r-menu__sub" style={{ marginTop: '10px' }}>
-                  {CLIENT.programs.map(p => (
-                    <a key={p.key} href={p.href} onClick={() => setOpen(false)}>☞ {p.name}</a>
-                  ))}
-                </div>
-              )}
+              <a href={l.to} className="r-menu__link" onClick={() => setOpen(false)}>{l.label}</a>
             </div>
           ))}
           <div style={{ marginTop: 'auto', paddingTop: '48px' }}>
-            <a href={CLIENT.nav.ctaHref} className="r-btn r-btn--pink">{CLIENT.nav.ctaLabel} ☞</a>
+            <a href={CLIENT.nav.ctaHref} className="r-btn r-btn--pink" onClick={() => setOpen(false)}>{CLIENT.nav.ctaLabel} →</a>
           </div>
         </div>
       </nav>

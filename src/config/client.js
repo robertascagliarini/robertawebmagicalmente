@@ -5,9 +5,8 @@
 
 export const CLIENT = {
   // ── Identity ──────────────────────────────────────────────
-  name: 'MagicalMente',
+  name: 'Magicalmente',
   tagline: 'Marca personal · Astrobranding · Marketing energético',
-  headerTagline: 'Estructura y libertad.',
   menuBlurb: [
     'Estructura, marca y contenido — sin tener que hacerlo sola, y sin traicionar quién eres para conseguirlo.',
     'AstroBranding y Marketing Energético para mujeres que construyen su negocio después de los 40.',
@@ -51,13 +50,30 @@ export const CLIENT = {
 
   // ── Navigation ────────────────────────────────────────────
   nav: {
-    ctaLabel: 'Trabaja conmigo',
-    ctaHref: '/trabaja-conmigo',
+    ctaLabel: 'Únete gratis al reto',
+    ctaHref: '/#recursos',
+    // Anclas de la home; el prefijo "/" hace que funcionen desde cualquier página
     links: [
-      { to: '/',                label: 'Inicio',          end: true },
-      { to: '/sobre-mi',        label: 'Sobre mí',        end: false },
-      { to: '/trabaja-conmigo', label: 'Trabaja conmigo', end: false, accent: true },
+      { to: '/#sobre',        label: 'Sobre' },
+      { to: '/#black-moon',   label: 'Black Moon Strategy' },
+      { to: '/#content-lab',  label: 'Content Lab' },
+      { to: '/#recursos',     label: 'Recursos' },
+      { to: '/#contacto',     label: 'Contacto' },
     ],
+  },
+
+  // ── Recursos gratuitos (home #recursos) ───────────────────
+  // ctaHref vacío → el CTA abre WhatsApp con el mensaje indicado.
+  // CLAUDE: sustituir por el enlace de inscripción / reserva cuando se defina.
+  freebies: {
+    reto: {
+      ctaHref: '',
+      whatsappMessage: 'Hola Roberta, quiero unirme gratis al reto de visibilidad.',
+    },
+    consultoria: {
+      ctaHref: '',
+      whatsappMessage: 'Hola Roberta, quiero solicitar la consultoría gratuita de 30 minutos.',
+    },
   },
 
   // ── Programas (Trabaja conmigo) ───────────────────────────
@@ -124,13 +140,12 @@ export const CLIENT = {
     primaryColor: '#0A0A0A',
   },
 
-  // ── Legal page links (footer bottom bar) ──────────────────
+  // ── Legal page links ──────────────────────────────────────
   legal: {
     links: [
       { to: '/aviso-legal', label: 'Aviso legal' },
-      { to: '/politica-de-privacidad', label: 'Política de privacidad' },
-      { to: '/politica-de-cookies', label: 'Política de cookies' },
-      { to: '/declaracion-accesibilidad', label: 'Declaración de accesibilidad' },
+      { to: '/politica-de-privacidad', label: 'Privacidad' },
+      { to: '/politica-de-cookies', label: 'Cookies' },
     ],
   },
 }
@@ -163,6 +178,12 @@ export function getProgram(key) {
 export function programCta(key) {
   const p = getProgram(key)
   return p.ctaHref || whatsappLink(p.whatsappMessage)
+}
+
+// CTA de un recurso gratuito: enlace directo o WhatsApp como fallback
+export function freebieCta(key) {
+  const f = CLIENT.freebies[key]
+  return f.ctaHref || whatsappLink(f.whatsappMessage)
 }
 
 // Placeholder oscuro para huecos de foto sin imagen real

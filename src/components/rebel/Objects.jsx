@@ -3,6 +3,7 @@
  * photographed objects (cassettes, playing card, vinyl, flywheel).
  * All are monochrome + pink so they sit on any section.
  */
+import { useEffect, useState } from 'react'
 
 export function Vinyl({ size = 45, spin = true }) {
   return (
@@ -132,6 +133,70 @@ export function NatalWheel({ size = 420, color = 'currentColor', labels = [] }) 
       {/* orbit arrows */}
       <path d="M60 110 A165 165 0 0 1 150 28" fill="none" stroke={color} strokeWidth="1.5" transform="translate(-14 -10)" />
       <path d="M340 290 A165 165 0 0 1 250 372" fill="none" stroke={color} strokeWidth="1.5" transform="translate(14 10)" />
+    </svg>
+  )
+}
+
+/**
+ * Moon whose phase follows the scroll: a thin waxing crescent at the top of
+ * the page that fills to full moon as the hero scrolls away.
+ * phase 0 = new moon, 0.5 = full, 1 = new again.
+ */
+export function Moon({ size = 460, from = 0.06, to = 0.5, distance = 1 }) {
+  const [phase, setPhase] = useState(from)
+
+  useEffect(() => {
+    let raf = 0
+    const update = () => {
+      raf = 0
+      const t = Math.min(1, Math.max(0, window.scrollY / (window.innerHeight * distance)))
+      setPhase(from + (to - from) * t)
+    }
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update) }
+    update()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => { window.removeEventListener('scroll', onScroll); cancelAnimationFrame(raf) }
+  }, [from, to, distance])
+
+  // Lit area = one semicircle + the terminator (an ellipse of rx = r·|cos θ|)
+  const r = 180, cx = 200, cy = 200
+  const theta = phase * 2 * Math.PI
+  const cos = Math.cos(theta)
+  const rx = (r * Math.abs(cos)).toFixed(2)
+  const waxing = phase <= 0.5
+  const sweep = waxing ? (cos > 0 ? 0 : 1) : (cos > 0 ? 1 : 0)
+  const lit = `M${cx} ${cy - r} A${r} ${r} 0 0 ${waxing ? 1 : 0} ${cx} ${cy + r} A${rx} ${r} 0 0 ${sweep} ${cx} ${cy - r} Z`
+
+  return (
+    <svg viewBox="0 0 400 400" style={{ width: `min(${size}px, 100%)`, height: 'auto', overflow: 'visible' }} aria-hidden="true">
+      <defs>
+        <radialGradient id="moon-lit" cx="38%" cy="34%" r="75%">
+          <stop offset="0%" stopColor="#F5F3EF" />
+          <stop offset="70%" stopColor="#DCD8D1" />
+          <stop offset="100%" stopColor="#A8A5A0" />
+        </radialGradient>
+        <radialGradient id="moon-glow" cx="50%" cy="50%" r="50%">
+          <stop offset="60%" stopColor="#EC1F80" stopOpacity="0.22" />
+          <stop offset="100%" stopColor="#EC1F80" stopOpacity="0" />
+        </radialGradient>
+        <clipPath id="moon-clip"><path d={lit} /></clipPath>
+        <filter id="moon-grain">
+          <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+          <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.35 0" />
+          <feComposite in2="SourceGraphic" operator="in" />
+        </filter>
+      </defs>
+      <circle cx={cx} cy={cy} r="200" fill="url(#moon-glow)" />
+      <circle cx={cx} cy={cy} r={r} fill="#141414" stroke="#F5F3EF" strokeWidth="1" strokeOpacity="0.5" />
+      <path d={lit} fill="url(#moon-lit)" />
+      <g opacity="0.16" fill="#0A0A0A" clipPath="url(#moon-clip)">
+        <circle cx="150" cy="140" r="26" />
+        <circle cx="250" cy="250" r="34" />
+        <circle cx="270" cy="130" r="14" />
+        <circle cx="140" cy="270" r="18" />
+      </g>
+      <path d={lit} fill="#fff" filter="url(#moon-grain)" />
+      <circle cx={cx} cy={cy} r={r} fill="none" stroke="#F5F3EF" strokeWidth="1" strokeOpacity="0.5" />
     </svg>
   )
 }
