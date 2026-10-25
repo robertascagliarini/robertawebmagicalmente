@@ -3,6 +3,7 @@
  * photographed objects (cassettes, playing card, vinyl, flywheel).
  * All are monochrome + pink so they sit on any section.
  */
+import { useId } from 'react'
 
 export function Vinyl({ size = 45, spin = true }) {
   return (
@@ -156,5 +157,38 @@ export function ClickBadge({ label, size = 76, className = '' }) {
       </svg>
       <span className="r-badge__label">{first}<br />{rest.join(' ')}</span>
     </span>
+  )
+}
+
+/**
+ * Header moon badge, built like the Darkroom vinyl: cream rim, faint orbit
+ * grooves, a fuchsia crescent whose shadow breathes, and a star circling it.
+ * On hover/focus the shadow slides off (full moon), the moon glows and the
+ * star speeds up.
+ */
+export function MoonBadge() {
+  const id = useId().replace(/:/g, '')
+  return (
+    <svg viewBox="0 0 100 100" className="r-moonbadge" aria-hidden="true">
+      <defs>
+        <clipPath id={`${id}-moon`}><circle cx="50" cy="50" r="24" /></clipPath>
+        <radialGradient id={`${id}-glow`}>
+          <stop offset="55%" stopColor="#EC1F80" stopOpacity="0.55" />
+          <stop offset="100%" stopColor="#EC1F80" stopOpacity="0" />
+        </radialGradient>
+      </defs>
+      <circle cx="50" cy="50" r="48" fill="#0A0A0A" stroke="#F5F3EF" strokeWidth="2.5" />
+      {[41, 35].map(r => <circle key={r} cx="50" cy="50" r={r} fill="none" stroke="#2a2a2a" strokeWidth="1.2" />)}
+      <circle cx="50" cy="50" r="34" fill={`url(#${id}-glow)`} className="r-moonbadge__glow" />
+      <g clipPath={`url(#${id}-moon)`}>
+        <circle cx="50" cy="50" r="24" fill="#EC1F80" />
+        <g className="r-moonbadge__slide">
+          <circle cx="50" cy="50" r="25" fill="#0A0A0A" className="r-moonbadge__shadow" />
+        </g>
+      </g>
+      <g className="r-moonbadge__orbit">
+        <path d="M50 5.5 L51.3 10.7 L56.5 12 L51.3 13.3 L50 18.5 L48.7 13.3 L43.5 12 L48.7 10.7 Z" fill="#EC1F80" />
+      </g>
+    </svg>
   )
 }

@@ -579,12 +579,19 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 .r-circle.is-open:hover { color: var(--primary); }
 .r-vinyl { padding: 0; border: none; background: none; overflow: visible; }
 .r-vinyl:hover { background: none; }
-/* Crescent badge (replaces the vinyl): the black disc drifts so the crescent breathes */
-.r-crescent { display: block; width: 100%; height: 100%; border-radius: 50%; overflow: hidden; position: relative; background: var(--accent); border: 1px solid var(--accent); }
-.r-crescent__shadow { position: absolute; inset: -1px; border-radius: 50%; background: var(--primary); transform: translateX(28%); animation: r-crescent 1.6s var(--r-ease) infinite alternate; }
-@keyframes r-crescent { from { transform: translate(22%, -8%); } to { transform: translate(40%, -14%); } }
-.r-vinyl:hover .r-crescent__shadow { animation-play-state: paused; }
-@media (prefers-reduced-motion: reduce) { .r-crescent__shadow { animation: none; } }
+/* Moon badge (header, links to Darkroom): see MoonBadge in Objects.jsx */
+.r-moonbadge { display: block; width: 100%; height: 100%; overflow: visible; }
+.r-moonbadge * { transform-box: view-box; transform-origin: 50px 50px; }
+.r-moonbadge__shadow { animation: r-moon-breathe 1.8s var(--r-ease) infinite alternate; }
+@keyframes r-moon-breathe { from { transform: translate(9px, -4px); } to { transform: translate(17px, -7px); } }
+.r-moonbadge__slide { transition: transform 0.6s var(--r-ease); }
+.r-moonbadge__orbit { animation: r-spin 7s linear infinite; }
+.r-moonbadge__glow { opacity: 0; transition: opacity 0.4s var(--r-ease); }
+.r-vinyl:hover .r-moonbadge__slide, .r-vinyl:focus-visible .r-moonbadge__slide { transform: translate(44px, -18px); }
+.r-vinyl:hover .r-moonbadge__glow, .r-vinyl:focus-visible .r-moonbadge__glow { opacity: 1; }
+.r-vinyl:hover .r-moonbadge__orbit, .r-vinyl:focus-visible .r-moonbadge__orbit { animation-duration: 1.6s; }
+.r-vinyl:active .r-moonbadge { transform: scale(0.92); }
+@media (prefers-reduced-motion: reduce) { .r-moonbadge__shadow, .r-moonbadge__orbit { animation: none; } }
 
 .r-menu {
   position: fixed; inset: var(--r-header) 0 0 0; z-index: 999;
