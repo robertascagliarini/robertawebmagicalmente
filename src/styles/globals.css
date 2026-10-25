@@ -843,14 +843,22 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 .r-door:hover::before, .r-door:focus-visible::before { transform: none; }
 .r-door:hover .r-em, .r-door:focus-visible .r-em { color: var(--primary); }
 .r-door:active { transform: scale(0.98); }
-.r-door__label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; padding-right: 84px; }
+.r-door__label { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; padding-right: 96px; }
 .r-door .r-door__badge { position: absolute; top: 14px; right: 14px; color: var(--accent); transition: color 0.35s var(--r-ease), transform 0.35s var(--r-ease); }
 .r-door:hover .r-door__badge, .r-door:focus-visible .r-door__badge { color: var(--primary); transform: scale(1.08); }
 /* Sunburst click badge */
 .r-badge { position: relative; display: inline-flex; align-items: center; justify-content: center; flex: none; }
-.r-badge__rays { position: absolute; inset: 0; width: 100%; height: 100%; animation: r-spin 14s linear infinite; }
-.r-badge__label { position: relative; font-family: var(--font-mono); font-size: 8.5px; line-height: 1.15; letter-spacing: 0.12em; text-transform: uppercase; text-align: center; }
-@media (prefers-reduced-motion: reduce) { .r-badge__rays { animation: none; } }
+.r-badge__art { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.r-badge__art * { transform-box: view-box; transform-origin: 50px 50px; }
+.r-badge__orbit { animation: r-spin 7s linear infinite; }
+.r-badge__shadow { fill: var(--primary); animation: r-badge-breathe 1.8s var(--r-ease) infinite alternate; transition: fill 0.35s var(--r-ease); }
+@keyframes r-badge-breathe { from { transform: translate(3px, -1.5px); } to { transform: translate(6px, -2.5px); } }
+.r-badge__slide { transition: transform 0.6s var(--r-ease); }
+.r-badge__label { position: relative; margin-top: 14px; font-family: var(--font-mono); font-size: 8.5px; line-height: 1.2; letter-spacing: 0.14em; text-transform: uppercase; text-align: center; }
+.r-door:hover .r-badge__slide, .r-door:focus-visible .r-badge__slide { transform: translate(18px, -7px); }
+.r-door:hover .r-badge__orbit, .r-door:focus-visible .r-badge__orbit { animation-duration: 1.6s; }
+.r-door:hover .r-badge__shadow, .r-door:focus-visible .r-badge__shadow { fill: var(--accent); }
+@media (prefers-reduced-motion: reduce) { .r-badge__orbit, .r-badge__shadow { animation: none; } }
 .r-door__name { font-family: var(--font-display); font-weight: 700; text-transform: uppercase; letter-spacing: -0.06em; font-size: clamp(30px, 3.2vw, 50px); line-height: 0.95; }
 .r-door__name .r-em { transition: color 0.35s var(--r-ease); }
 @media (max-width: 860px) {

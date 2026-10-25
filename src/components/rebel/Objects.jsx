@@ -138,22 +138,31 @@ export function NatalWheel({ size = 420, color = 'currentColor', labels = [] }) 
 }
 
 /**
- * Petal-sun "entra aquí" badge: soft rounded petals and a fine inner ring that
- * rotate slowly around a fixed two-line label. Colour follows `currentColor`.
+ * "Entra aquí" badge, sibling of MoonBadge: rim with faint grooves, a small
+ * breathing crescent above the label and a star orbiting the rim. On card
+ * hover the crescent fills to a full moon and the star speeds up.
+ * Colour follows `currentColor`.
  */
-const PETALS = Array.from({ length: 12 }, (_, i) => i * 30)
+const STAR = 'M50 -1 L51.6 4.4 L57 6 L51.6 7.6 L50 13 L48.4 7.6 L43 6 L48.4 4.4 Z'
 
-export function ClickBadge({ label, size = 76, className = '' }) {
+export function ClickBadge({ label, size = 84, className = '' }) {
+  const id = useId().replace(/:/g, '')
   const [first, ...rest] = label.split(' ')
   return (
     <span className={`r-badge ${className}`} style={{ width: size, height: size }} aria-hidden="true">
-      <svg viewBox="0 0 100 100" className="r-badge__rays">
-        {PETALS.map(a => (
-          <g key={a} transform={`rotate(${a} 50 50)`}>
-            <ellipse cx="50" cy="13" rx="7" ry="12" fill="currentColor" />
+      <svg viewBox="0 0 100 100" className="r-badge__art">
+        <defs>
+          <clipPath id={`${id}-moon`}><circle cx="50" cy="30" r="8" /></clipPath>
+        </defs>
+        <circle cx="50" cy="50" r="44" fill="none" stroke="currentColor" strokeWidth="1.8" />
+        {[38, 33].map(r => <circle key={r} cx="50" cy="50" r={r} fill="none" stroke="currentColor" strokeWidth="0.8" opacity="0.3" />)}
+        <g clipPath={`url(#${id}-moon)`}>
+          <circle cx="50" cy="30" r="8" fill="currentColor" />
+          <g className="r-badge__slide">
+            <circle cx="50" cy="30" r="8.5" className="r-badge__shadow" />
           </g>
-        ))}
-        <circle cx="50" cy="50" r="33" fill="none" stroke="currentColor" strokeWidth="1.4" />
+        </g>
+        <g className="r-badge__orbit"><path d={STAR} fill="currentColor" /></g>
       </svg>
       <span className="r-badge__label">{first}<br />{rest.join(' ')}</span>
     </span>
