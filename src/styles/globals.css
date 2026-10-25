@@ -803,6 +803,11 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 .r-hero__grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
 .r-hero__title span { display: block; }
 .r-hero__moon { position: relative; display: flex; justify-content: center; }
+/* Moon: lit disc + dark disc that slides with scroll (see Moon in Objects.jsx) */
+.r-moon { position: relative; width: 100%; aspect-ratio: 1 / 1; }
+.r-moon__disc { position: absolute; inset: 0; border-radius: 50%; background: #E9C3BB; overflow: hidden; }
+.r-moon__shadow { position: absolute; inset: -1px; border-radius: 50%; background: var(--primary); will-change: transform; }
+.r-moon__ring { position: absolute; inset: -6%; border-radius: 50%; border: 1px solid rgba(245, 243, 239, 0.25); }
 .r-hero__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: clamp(48px, 6vw, 88px); }
 .r-hero__cards > * { min-width: 0; }
 .r-door {

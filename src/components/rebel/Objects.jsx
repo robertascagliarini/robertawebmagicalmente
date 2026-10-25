@@ -3,7 +3,7 @@
  * photographed objects (cassettes, playing card, vinyl, flywheel).
  * All are monochrome + pink so they sit on any section.
  */
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 
 export function Vinyl({ size = 45, spin = true }) {
   return (
@@ -137,126 +137,30 @@ export function NatalWheel({ size = 420, color = 'currentColor', labels = [] }) 
   )
 }
 
-// Near-side features in a 400×400 box (disc r=180 at 200,200), roughly
-// where the real maria and bright rayed craters sit.
-const MARIA = [
-  // cx, cy, rx, ry, rotation, opacity
-  [112, 178, 40, 70, -12, 0.42], // Oceanus Procellarum
-  [166, 124, 34, 28, 10, 0.5],   // Mare Imbrium
-  [234, 130, 22, 20, 0, 0.55],   // Mare Serenitatis
-  [262, 182, 28, 22, 20, 0.5],   // Mare Tranquillitatis
-  [322, 152, 14, 18, 0, 0.6],    // Mare Crisium
-  [296, 232, 13, 20, 15, 0.42],  // Mare Fecunditatis
-  [252, 244, 13, 11, 0, 0.42],   // Mare Nectaris
-  [180, 268, 22, 15, -10, 0.36], // Mare Nubium
-  [122, 258, 15, 12, 0, 0.45],   // Mare Humorum
-  [212, 88, 44, 8, -6, 0.32],    // Mare Frigoris
-]
-const CRATERS = [
-  [192, 322, 10], [150, 206, 7], [124, 132, 5], [214, 196, 6], [292, 286, 8],
-  [96, 214, 5], [246, 302, 6], [330, 214, 5], [176, 168, 4], [270, 92, 5],
-  [150, 300, 6], [312, 262, 4], [226, 270, 4], [104, 280, 4],
-]
-
 /**
- * Moon cycling continuously through its phases (new → full → new).
- * The lit side is masked with a blurred terminator; the dark side keeps a
- * faint earthshine so the disc never disappears. Static under reduced motion.
+ * Moon whose phase follows the scroll: two same-size discs, the dark one
+ * slides right over the lit one (clipped by overflow: hidden), going from
+ * a thin crescent at the top to nearly full after `distance` px.
  */
-export function Moon({ size = 460, period = 24 }) {
-  const [phase, setPhase] = useState(0.4)
+export function Moon({ size = 460, from = 18, to = 88, distance = 900 }) {
+  const shadow = useRef(null)
 
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
-    let raf = 0
-    const start = performance.now() - 0.15 * period * 1000
-    const tick = now => {
-      setPhase(((now - start) / (period * 1000)) % 1)
-      raf = requestAnimationFrame(tick)
+    const onScroll = () => {
+      const p = Math.min(1, window.scrollY / distance)
+      if (shadow.current) shadow.current.style.transform = `translateX(${from + p * (to - from)}%)`
     }
-    raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
-  }, [period])
-
-  // Lit area = one semicircle + the terminator (an ellipse of rx = r·|cos θ|)
-  const r = 180, cx = 200, cy = 200
-  const theta = phase * 2 * Math.PI
-  const cos = Math.cos(theta)
-  const rx = (r * Math.abs(cos)).toFixed(2)
-  const waxing = phase <= 0.5
-  const sweep = waxing ? (cos > 0 ? 0 : 1) : (cos > 0 ? 1 : 0)
-  const lit = `M${cx} ${cy - r} A${r} ${r} 0 0 ${waxing ? 1 : 0} ${cx} ${cy + r} A${rx} ${r} 0 0 ${sweep} ${cx} ${cy - r} Z`
-  // Glow follows how much of the disc is lit
-  const glow = (0.08 + 0.22 * (1 - cos) / 2).toFixed(3)
-
-  const surface = (
-    <>
-      <circle cx={cx} cy={cy} r={r} fill="url(#moon-base)" />
-      <g filter="url(#moon-maria)" fill="#76736E">
-        {MARIA.map(([x, y, a, b, rot, o], i) => (
-          <ellipse key={i} cx={x} cy={y} rx={a} ry={b} opacity={o} transform={`rotate(${rot} ${x} ${y})`} />
-        ))}
-      </g>
-      {CRATERS.map(([x, y, cr], i) => (
-        <g key={i}>
-          <circle cx={x} cy={y} r={cr} fill="#8A8782" opacity="0.35" />
-          <circle cx={x - cr * 0.25} cy={y - cr * 0.25} r={cr * 0.8} fill="none" stroke="#FBFAF7" strokeWidth="0.8" opacity="0.4" />
-        </g>
-      ))}
-      {/* Tycho's rays */}
-      <g stroke="#FBFAF7" strokeWidth="1.2" opacity="0.14" strokeLinecap="round">
-        {[200, 235, 265, 300, 330, 20, 60, 150].map(a => {
-          const rad = a * Math.PI / 180
-          return <line key={a} x1="192" y1="322" x2={192 + 120 * Math.cos(rad)} y2={322 + 120 * Math.sin(rad)} />
-        })}
-      </g>
-      <circle cx={cx} cy={cy} r={r} fill="#fff" filter="url(#moon-grain)" opacity="0.5" />
-      <circle cx={cx} cy={cy} r={r} fill="url(#moon-limb)" />
-    </>
-  )
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [from, to, distance])
 
   return (
-    <svg viewBox="0 0 400 400" style={{ width: `min(${size}px, 100%)`, height: 'auto', overflow: 'visible' }} aria-hidden="true">
-      <defs>
-        <radialGradient id="moon-base" cx="44%" cy="40%" r="70%">
-          <stop offset="0%" stopColor="#F2EFE9" />
-          <stop offset="60%" stopColor="#D9D5CE" />
-          <stop offset="100%" stopColor="#B9B5AE" />
-        </radialGradient>
-        <radialGradient id="moon-limb" cx="50%" cy="50%" r="50%">
-          <stop offset="72%" stopColor="#000" stopOpacity="0" />
-          <stop offset="100%" stopColor="#000" stopOpacity="0.38" />
-        </radialGradient>
-        <radialGradient id="moon-glow" cx="50%" cy="50%" r="50%">
-          <stop offset="62%" stopColor="#F5F3EF" stopOpacity="1" />
-          <stop offset="78%" stopColor="#EC1F80" stopOpacity="0.35" />
-          <stop offset="100%" stopColor="#EC1F80" stopOpacity="0" />
-        </radialGradient>
-        <filter id="moon-maria" x="-20%" y="-20%" width="140%" height="140%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="3" seed="7" result="n" />
-          <feDisplacementMap in="SourceGraphic" in2="n" scale="22" />
-          <feGaussianBlur stdDeviation="2.5" />
-        </filter>
-        <filter id="moon-grain">
-          <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch" />
-          <feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.4 0" />
-          <feComposite in2="SourceGraphic" operator="in" />
-        </filter>
-        <filter id="moon-soft" x="-10%" y="-10%" width="120%" height="120%">
-          <feGaussianBlur stdDeviation="4" />
-        </filter>
-        <clipPath id="moon-disc"><circle cx={cx} cy={cy} r={r} /></clipPath>
-        <mask id="moon-lit-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="400" height="400">
-          <path d={lit} fill="#fff" filter="url(#moon-soft)" />
-        </mask>
-      </defs>
-      <circle cx={cx} cy={cy} r="200" fill="url(#moon-glow)" opacity={glow} />
-      <g clipPath="url(#moon-disc)">
-        <circle cx={cx} cy={cy} r={r} fill="#0E0E0E" />
-        {/* earthshine */}
-        <g opacity="0.06">{surface}</g>
-        <g mask="url(#moon-lit-mask)">{surface}</g>
-      </g>
-    </svg>
+    <div className="r-moon" style={{ maxWidth: size }} aria-hidden="true">
+      <div className="r-moon__disc">
+        <div ref={shadow} className="r-moon__shadow" style={{ transform: `translateX(${from}%)` }} />
+      </div>
+      <div className="r-moon__ring" />
+    </div>
   )
 }
