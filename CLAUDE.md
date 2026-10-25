@@ -252,6 +252,20 @@ Only exceptions: generic copy (hero headlines, service descriptions, FAQ answers
 
 ---
 
+## Git — Auto Commit & Push (standing authorization)
+
+The client has asked that **every change be pushed to GitHub automatically**, without asking first.
+
+After each completed change:
+1. Run `npx astro build` — only continue if it succeeds.
+2. `git add` the changed files, commit with a descriptive message.
+3. `git push` to `main`.
+4. Tell the user it's uploaded (commit hash).
+
+If the build fails, fix it first; never push a broken build.
+
+---
+
 ## Living System — Keeping This Template Up to Date
 
 This template improves with every client project. Update `CLAUDE.md`, `BRIEF.md`, components, and the plan file whenever:

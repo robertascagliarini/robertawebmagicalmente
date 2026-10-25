@@ -155,19 +155,18 @@ export default function Home() {
       </section>
 
       {/* 3b · ¿Te suena esto? */}
-      <Statement hand="¿Te suena esto?" typed={TE_SUENA}>
+      <Statement hand="¿Te suena esto?" typed={TE_SUENA} padBottom="clamp(40px, 5vw, 72px)">
         Estás haciendo todo lo que <InlineSparkle /> crees que <i>“deberías”</i> hacer para que tu negocio funcione.
       </Statement>
 
       {/* 3c · Y aun así */}
-      <section className="r-sec r-light r-pad r-rule-top">
+      <section className="r-sec r-light r-pad r-rule-top" style={{ paddingTop: 'clamp(48px, 6vw, 88px)' }}>
         <div className="r-wrap">
           <Reveal><h2 className="r-display r-xl">Y aun <Em>así…</Em></h2></Reveal>
           <div className="r-three">
             {Y_AUN_ASI.map(([pink, rest], i) => (
               <Reveal key={i} delay={i * 90} className="r-three__item">
-                <Sparkle className="r-star" color="var(--accent)" style={{ animationDelay: `${-i * 0.6}s` }} />
-                <p className="r-lead"><span className="r-pink">{pink}</span>{rest}</p>
+                <p className="r-lead"><strong className="r-pink">{pink}</strong>{rest}</p>
               </Reveal>
             ))}
           </div>

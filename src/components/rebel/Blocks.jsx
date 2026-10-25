@@ -143,9 +143,9 @@ export function HeroPhoto({ image, position = '50% 25%', title, titleClass = 'r-
 }
 
 // ── Statement ────────────────────────────────────────────────────
-export function Statement({ hand, children, typed, typedClass = '', floater, after, id }) {
+export function Statement({ hand, children, typed, typedClass = '', floater, after, id, padBottom = 'clamp(120px, 14vw, 220px)' }) {
   return (
-    <section id={id} className="r-sec r-light" style={{ padding: 'clamp(120px, 18vw, 260px) 0 clamp(120px, 14vw, 220px)' }}>
+    <section id={id} className="r-sec r-light" style={{ padding: `clamp(120px, 18vw, 260px) 0 ${padBottom}` }}>
       <div className="r-narrow" style={{ position: 'relative', width: 'min(1080px, 100%)' }}>
         {hand && <Reveal><span className="r-hand" style={{ marginBottom: '18px' }}>{hand}</span></Reveal>}
         <Reveal delay={80}>
