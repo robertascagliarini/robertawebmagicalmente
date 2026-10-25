@@ -47,7 +47,7 @@ const TE_SUENA = [
   'Pruebas estrategias, pero al final ninguna funciona para ti.',
 ]
 
-// [rosa, resto]: the part before "pero" is set in accent
+// [rosa, resto]: the part before "pero" is set in the pink hand font
 const Y_AUN_ASI = [
   ['Tienes resultados buenísimos con tus clientas… ', 'pero no consigues atraer a más gente, no estás percibiendo lo que realmente mereces por el trabajo que haces y sigues dependiendo del boca a boca, o de que alguien te recomiende.'],
   ['Tienes ideas geniales para crear, ', 'pero no sabes cómo bajarlas a tierra, estructurarlas y venderlas de forma fácil.'],
@@ -166,7 +166,8 @@ export default function Home() {
           <div className="r-three">
             {Y_AUN_ASI.map(([pink, rest], i) => (
               <Reveal key={i} delay={i * 90} className="r-three__item">
-                <p className="r-lead"><strong className="r-pink">{pink}</strong>{rest}</p>
+                <p className="r-hand r-three__hand">{pink}</p>
+                <p className="r-lead r-three__text">{rest}</p>
               </Reveal>
             ))}
           </div>
