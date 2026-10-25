@@ -237,7 +237,7 @@ export function WordmarkBand({ children }) {
     <section className="r-sec">
       <div className="r-light" style={{ padding: 'clamp(90px, 11vw, 160px) 0 14px', borderTop: '1px solid var(--primary)' }}>
         <Reveal className="r-wrap" style={{ maxWidth: '1240px' }}>
-          <Wordmark color="var(--primary)" />
+          <Wordmark tone="light" />
         </Reveal>
       </div>
       <div className="r-dark" style={{ padding: '26px 16px clamp(90px, 11vw, 160px)', textAlign: 'center', marginTop: '-1px' }}>

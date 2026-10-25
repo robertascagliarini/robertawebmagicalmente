@@ -88,13 +88,9 @@ const FINAL_CTAS = [
 export default function Home() {
   return (
     <>
-      {/* 0 · Foto */}
-      <section className="r-sec r-dark r-hero-photo">
-        <Photo src={CLIENT.photos.roberta} alt={`Retrato de ${CLIENT.legalName}`} position="50% 22%" style={{ position: 'absolute', inset: 0 }} />
-      </section>
-
       {/* 1 · Hero */}
-      <section id="inicio" className="r-sec r-dark r-hero">
+      <section id="inicio" className="r-sec r-dark r-hero r-hero--photo">
+        <Photo src={CLIENT.photos.roberta} alt={`Retrato de ${CLIENT.legalName}`} position="50% 0%" className="r-hero__photo" />
         <div className="r-wrap">
           <div className="r-hero__grid">
             <div>
@@ -108,14 +104,15 @@ export default function Home() {
                   Ayudo a mujeres con experiencia, talento y ganas de reinventarse a convertir lo que saben y lo que son en un negocio rentable, auténtico y sostenible.
                 </p>
               </Reveal>
-              <Reveal delay={200}>
-                <p className="r-hand" style={{ marginTop: '28px' }}>Astrobranding · Marketing energético</p>
-              </Reveal>
             </div>
             <div className="r-hero__moon">
               <Moon size={480} />
             </div>
           </div>
+
+          <Reveal delay={200} className="r-hero__tagline">
+            <p className="r-hand">Astrobranding · Marketing energético</p>
+          </Reveal>
 
           <div className="r-hero__cards">
             {HERO_CARDS.map((c, i) => (
