@@ -21,7 +21,7 @@ import CookieBanner from '../components/CookieBanner.jsx'
 const { title, description, canonical, schema: pageSchema, robots } = Astro.props
 const pathname = Astro.url.pathname
 const canonicalUrl = canonical ?? `https://${CLIENT.domain}${pathname}`
-const ogImage = `https://${CLIENT.domain}${CLIENT.logoSrc}`
+const ogImage = `https://${CLIENT.domain}${CLIENT.logoSrcPng}`
 
 // ── LocalBusiness JSON-LD — auto-generated from client.js ──────────────────
 const localBusinessSchema = {

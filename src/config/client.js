@@ -19,8 +19,9 @@ export const CLIENT = {
   foundingYear: null,
 
   // ── Brand assets ──────────────────────────────────────────
-  logoSrc: '/brand_assets/black-moon-lab-logo.svg',
-  logoAlt: 'Black Moon Lab',
+  logoSrc: '/brand_assets/magicalmente-logo.webp',
+  logoSrcPng: '/brand_assets/magicalmente-logo.png', // og:image / schema (webp not universally accepted)
+  logoAlt: 'Magicalmente',
 
   // ── Contact ───────────────────────────────────────────────
   phone: '+34 620 109 003',
