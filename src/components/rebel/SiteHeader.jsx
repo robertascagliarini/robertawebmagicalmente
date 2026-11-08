@@ -24,7 +24,7 @@ export default function SiteHeader() {
   return (
     <>
       <header className="r-header">
-        <a href="/" aria-label={CLIENT.name} style={{ display: 'block', width: 'clamp(170px, 16vw, 222px)' }}>
+        <a href="/" aria-label={CLIENT.name} style={{ display: 'block', width: 'clamp(190px, 19vw, 280px)' }}>
           <Wordmark />
         </a>
         <nav className="r-header__nav" aria-label="Principal">
