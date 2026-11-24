@@ -10,11 +10,6 @@ function Em({ children }) {
   return <em className="r-em">{children}</em>
 }
 
-// Visible marker for copy that is not final yet — never fill these in
-function Pending({ children }) {
-  return <p className="r-pending"><strong>[PENDIENTE]</strong> {children}</p>
-}
-
 function Eyebrow({ children, style }) {
   return <p className="r-eyebrow" style={style}>{children}</p>
 }
@@ -52,21 +47,6 @@ const Y_AUN_ASI = [
   ['Tienes resultados buenísimos con tus clientas… ', 'pero no consigues atraer a más gente, no estás percibiendo lo que realmente mereces por el trabajo que haces y sigues dependiendo del boca a boca, o de que alguien te recomiende.'],
   ['Tienes ideas geniales para crear, ', 'pero no sabes cómo bajarlas a tierra, estructurarlas y venderlas de forma fácil.'],
   ['Tu misión es estar al servicio de los demás, ', 'pero el marketing te supera. Te suena complicado, y encima el que has conocido hasta ahora es demasiado masculino, enfocado a la venta agresiva… y tú no te reconoces ahí.'],
-]
-
-const RETO_INCLUDES = [
-  'Una propuesta de contenido por día',
-  'Un audio training diario',
-  'La psicología de la comunicación detrás de cada pieza',
-  'Formatos, ganchos y estructura',
-  'Indicaciones para adaptar y publicar',
-]
-
-const CONSULTORIA_INCLUDES = [
-  'Revisión inicial de tu perfil de Instagram',
-  'Qué dificulta que se entienda tu marca',
-  'Oportunidades de mejora',
-  'Primeras recomendaciones para optimizar tu perfil',
 ]
 
 const FINAL_CTAS = [
@@ -214,18 +194,6 @@ export default function Home() {
               <p className="r-text">Una membresía para dejar de publicar de forma improvisada y agotadora y crear una estrategia de comunicación coherente con tu voz de marca, con formación semanal, acompañamiento y una comunidad de mujeres como tú.</p>
               <div className="r-svc__cta"><Btn href={lab.href} variant="dark">Descubre Content Lab →</Btn></div>
             </Reveal>
-            <Reveal delay={60} className="r-svc">
-              <Eyebrow>03 · Reto gratuito</Eyebrow>
-              <h3 className="r-display r-lg r-svc__title">Reto de <Em>visibilidad</Em></h3>
-              <p className="r-text">Siete días para dejar de esconder tu marca y empezar a comunicar lo que te hace única, con una propuesta de contenido y un audio training cada día para que publiques con intención.</p>
-              <div className="r-svc__cta"><Btn href="#reto" variant="dark">Descubre el reto →</Btn></div>
-            </Reveal>
-            <Reveal delay={160} className="r-svc r-svc--dark">
-              <Eyebrow>04 · Consultoría gratuita</Eyebrow>
-              <h3 className="r-display r-lg r-svc__title">Consultoría de <Em>visibilidad</Em></h3>
-              <p className="r-text">Treinta minutos para descubrir qué puede estar fallando en tu perfil de Instagram y cuáles son los primeros cambios que puedes aplicar para mejorar tu imagen de marca.</p>
-              <div className="r-svc__cta"><Btn href="#consultoria" variant="pink">Descubre la consultoría →</Btn></div>
-            </Reveal>
           </div>
         </div>
       </section>
@@ -236,7 +204,7 @@ export default function Home() {
           <div className="r-head-split">
             <Reveal><h2 className="r-display r-xl">Recursos <Em>gratuitos</Em></h2></Reveal>
             <Reveal delay={100}>
-              <p className="r-lead">Mi universo tiene la puerta abierta. Entra con dos primeros pasos gratuitos: siete días para hacerte visible o media hora para mirar tu perfil con otros ojos.</p>
+              <p className="r-lead">Mi universo tiene la puerta abierta. Si quieres probar cómo es trabajar conmigo, empieza con uno de estos dos primeros pasos gratuitos.</p>
             </Reveal>
           </div>
 
@@ -244,23 +212,12 @@ export default function Home() {
             <Reveal id="reto" className="r-free">
               <div className="r-free__labels"><span>Reto de visibilidad</span><span>Júpiter en Leo</span></div>
               <h3 className="r-free__quote">«Siete días para dejar de esconder tu marca y empezar a comunicar lo que te hace <Em>única</Em>».</h3>
-              <ol className="r-days" aria-label="Siete días">
-                {[1, 2, 3, 4, 5, 6, 7].map(d => <li key={d}>{d}</li>)}
-              </ol>
-              <ul className="r-includes">
-                {RETO_INCLUDES.map(t => <li key={t}>{t}</li>)}
-              </ul>
               <div className="r-svc__cta"><Btn href={freebieCta('reto')} variant="dark">Únete gratis al reto →</Btn></div>
             </Reveal>
 
             <Reveal id="consultoria" delay={100} className="r-free">
               <div className="r-free__labels"><span>Consultoría de visibilidad</span><span>Instagram</span></div>
-              <p className="r-display r-xxl r-free__big">30 <Em>minutos</Em></p>
-              <p className="r-free__quote r-free__quote--sm">«En 30 minutos, descubre qué puede estar fallando en tu perfil de Instagram y cuáles son los primeros cambios que puedes aplicar para mejorar tu imagen de marca».</p>
-              <ul className="r-includes">
-                {CONSULTORIA_INCLUDES.map(t => <li key={t}>{t}</li>)}
-              </ul>
-              <Pending>criterios de revisión, sistema de reserva y siguiente paso</Pending>
+              <p className="r-display r-xl r-free__big">30 minutos <Em>conmigo</Em></p>
               <div className="r-svc__cta"><Btn href={freebieCta('consultoria')} variant="dark">Solicita tu consultoría gratuita →</Btn></div>
             </Reveal>
           </div>
