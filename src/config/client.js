@@ -13,7 +13,7 @@ export const CLIENT = {
     'AstroBranding y Marketing Energético para mujeres que construyen su negocio después de los 40.',
   ],
   description: 'Roberta Scagliarini — mentora de marca personal, estratega de contenido y astróloga. Estructura, marca y contenido para mujeres que construyen su negocio después de los 40, a partir de su Carta Natal.',
-  domain: 'magicalmente.com',
+  domain: 'www.magicalmente.com',
   language: 'es',
   schemaType: 'ProfessionalService',
   foundingYear: null,
