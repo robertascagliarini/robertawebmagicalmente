@@ -210,8 +210,9 @@ export default function Home() {
 
           <div className="r-two r-two--cards">
             <Reveal id="reto" className="r-free">
-              <div className="r-free__labels"><span>Reto de visibilidad</span><span>Júpiter en Leo</span></div>
-              <h3 className="r-free__quote">«Siete días para dejar de esconder tu marca y empezar a comunicar lo que te hace <Em>única</Em>».</h3>
+              <div className="r-free__labels"><span>Reto gratuito de visibilidad</span><span>Júpiter en Leo</span></div>
+              <h3 className="r-display r-xl r-free__big">Luces, cámara, <Em>visibilidad</Em></h3>
+              <p className="r-text r-free__sub">7 días para dejar de esconder tu marca y comunicar lo que te hace única con la energía de Júpiter en Leo.</p>
               <div className="r-svc__cta"><Btn href={freebieCta('reto')} variant="dark">Únete gratis al reto →</Btn></div>
             </Reveal>
 

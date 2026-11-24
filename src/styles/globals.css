@@ -943,8 +943,8 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 .r-free { background: var(--cream); color: var(--primary); }
 .r-free__labels { display: flex; justify-content: space-between; gap: 16px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; padding-bottom: 18px; border-bottom: 1px solid currentColor; }
 .r-free__labels span:last-child { color: var(--accent); text-align: right; }
-.r-free__quote { font-family: var(--font-display); font-weight: 700; text-transform: none; letter-spacing: -0.03em; font-size: clamp(24px, 2.4vw, 34px); line-height: 1.15; margin-top: 28px; color: inherit; }
 .r-free__big { margin-top: 28px; }
+.r-free__sub { margin-top: 16px; max-width: 460px; }
 
 /* Founder + final CTA */
 .r-founder__photo { aspect-ratio: 4 / 5; border-radius: var(--radius-lg); filter: grayscale(1); }
