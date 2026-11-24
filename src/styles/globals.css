@@ -826,6 +826,18 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 .r-hero--photo > .r-wrap { position: relative; z-index: 2; }
 .r-hero__center { max-width: 980px; margin: 0 auto; text-align: center; }
 .r-hero__center .r-lead { max-width: 640px; margin-left: auto; margin-right: auto; }
+/* Laptop/desktop: at full width the portrait photo is taller than the screen and
+   the copy fell below the fold. Show the photo at a fixed height, centred, with
+   faded sides, so the copy (still starting at the chin) is visible. Mobile untouched. */
+@media (min-width: 1024px) {
+  .r-hero--photo { padding-top: calc(min(72svh, 780px) * 0.5); }
+  .r-hero__photo {
+    left: 50%; width: auto; height: min(72svh, 780px);
+    transform: translateX(-50%);
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 18%, #000 82%, transparent);
+  }
+}
 .r-hero__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: clamp(48px, 6vw, 88px); }
 .r-hero__cards > * { min-width: 0; }
 .r-door {
