@@ -46,7 +46,6 @@ export default function SiteFooter() {
             </div>
           ))}
         </div>
-        <p className="r-footer__logo" aria-hidden="true">{CLIENT.name}</p>
         <p className="r-footer__legal">© {new Date().getFullYear()} {CLIENT.name}</p>
       </div>
     </footer>

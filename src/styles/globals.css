@@ -958,11 +958,5 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 .r-footer__cols a { font-family: var(--font-display); font-weight: 700; font-size: 15px; text-transform: uppercase; color: var(--cream); transition: color 0.2s var(--r-ease); }
 .r-footer__cols a:hover, .r-footer__cols a:focus-visible { color: var(--accent); outline: none; }
 .r-footer__cols a:active { opacity: 0.7; }
-.r-footer__logo {
-  font-family: var(--font-serif); font-style: italic; font-weight: 500;
-  font-size: clamp(64px, 16.5vw, 270px); line-height: 0.9; letter-spacing: -0.04em;
-  color: var(--cream); text-align: center; white-space: nowrap;
-  margin: clamp(48px, 7vw, 96px) 0 24px;
-}
-.r-footer .r-footer__legal { text-align: center; }
+.r-footer .r-footer__legal { text-align: center; margin-top: clamp(48px, 7vw, 96px); }
 @media (max-width: 760px) { .r-footer__cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
