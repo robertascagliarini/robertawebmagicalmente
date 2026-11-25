@@ -65,7 +65,7 @@ export default function Home() {
           <div className="r-hero__center">
             <Reveal>
               <h1 className="r-display r-lg r-hero__title">
-                Crea tu <span className="r-hero__pink">negocio rentable después de los 40</span>
+                Crea tu <span className="r-hero__pink">negocio después de los 40</span>
                 <span className="r-hero__sub">sin ser una experta en marketing, tecnología y redes sociales.</span>
               </h1>
             </Reveal>
