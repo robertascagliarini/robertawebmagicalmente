@@ -831,7 +831,7 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
    faded sides, so the copy (still starting at the chin) is visible. Mobile untouched. */
 @media (min-width: 1024px) {
   .r-hero--photo { padding-top: calc(min(64svh, 700px) * 0.5); }
-  .r-hero--photo .r-hero__title { font-size: clamp(34px, 4vw, 60px); }
+  .r-hero--photo .r-hero__title { font-size: clamp(30px, 3vw, 46px); max-width: 34ch; margin-inline: auto; }
   .r-hero__photo {
     left: 50%; width: auto; height: min(64svh, 700px);
     transform: translateX(-50%);
