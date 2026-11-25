@@ -113,9 +113,9 @@ export default function Home() {
       <section className="r-sec r-paper r-pad">
         <div className="r-wrap">
           <div className="r-head-split">
-            <Reveal><h2 className="r-display r-xl">Esto es para ti <Em>si…</Em></h2></Reveal>
+            <Reveal><h2 className="r-display r-xl">Este es tu lugar <Em>si…</Em></h2></Reveal>
             <Reveal delay={100}>
-              <p className="r-lead">Tienes más de 40 años, una experiencia que vale oro y la sensación de que ha llegado el momento de construir algo propio.</p>
+              <p className="r-lead">Tienes más de 40 años, una experiencia que vale oro y la sensación de que ha llegado el momento de construir algo tuyo.</p>
             </Reveal>
           </div>
           <ol className="r-numlist">
