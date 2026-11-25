@@ -815,7 +815,9 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 .r-hero { padding: clamp(56px, 7vw, 100px) 0 clamp(40px, 5vw, 64px); }
 .r-hero__grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
 .r-hero__title span { display: block; }
-.r-hero--photo .r-hero__title { font-size: clamp(34px, 4.5vw, 68px); }
+.r-hero--photo .r-hero__title { font-size: clamp(32px, 4.5vw, 68px); }
+.r-hero__title .r-hero__pink { display: inline; color: var(--accent); }
+.r-hero__title .r-hero__sub { display: block; font-size: 0.52em; line-height: 1.15; margin-top: 0.5em; color: var(--cream); letter-spacing: 0.01em; }
 /* Hero over the photo: the photo keeps its portrait ratio at full width and the
    copy starts just below the chin (~50% of the photo's height = 86vw). */
 .r-hero--photo { position: relative; overflow: hidden; padding-top: 86vw; }
