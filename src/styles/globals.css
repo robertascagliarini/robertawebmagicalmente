@@ -815,6 +815,7 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
 .r-hero { padding: clamp(56px, 7vw, 100px) 0 clamp(40px, 5vw, 64px); }
 .r-hero__grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
 .r-hero__title span { display: block; }
+.r-hero--photo .r-hero__title { font-size: clamp(34px, 4.5vw, 68px); }
 /* Hero over the photo: the photo keeps its portrait ratio at full width and the
    copy starts just below the chin (~50% of the photo's height = 86vw). */
 .r-hero--photo { position: relative; overflow: hidden; padding-top: 86vw; }
@@ -831,7 +832,7 @@ section.r-sec { border-bottom: none; position: relative; overflow: hidden; }
    faded sides, so the copy (still starting at the chin) is visible. Mobile untouched. */
 @media (min-width: 1024px) {
   .r-hero--photo { padding-top: calc(min(64svh, 700px) * 0.5); }
-  .r-hero--photo .r-hero__title { font-size: clamp(30px, 3vw, 46px); max-width: 34ch; margin-inline: auto; }
+  .r-hero--photo .r-hero__title { font-size: clamp(28px, 2.7vw, 41px); max-width: 34ch; margin-inline: auto; }
   .r-hero__photo {
     left: 50%; width: auto; height: min(64svh, 700px);
     transform: translateX(-50%);

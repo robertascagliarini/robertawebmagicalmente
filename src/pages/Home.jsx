@@ -65,7 +65,7 @@ export default function Home() {
           <div className="r-hero__center">
             <Reveal>
               <h1 className="r-display r-lg r-hero__title">
-                Existe una forma de crear tu negocio después de los 40 que te da ingresos estables y tiempo para disfrutar, sin ser una experta en marketing o tecnología.
+                Existe una forma de crear tu negocio después de los 40 sin que seas una experta en marketing, tecnología, Instagram o redes sociales.
               </h1>
             </Reveal>
             <Reveal delay={140}>
