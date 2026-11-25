@@ -192,7 +192,7 @@ export default function Home() {
             <Reveal id="content-lab" delay={100} className="r-svc">
               <Eyebrow>02 · Laboratorio de creación de contenido en Instagram</Eyebrow>
               <h3 className="r-display r-lg r-svc__title">Content <Em>Lab</Em></h3>
-              <p className="r-text">Una membresía para dejar de publicar de forma improvisada y agotadora y crear una estrategia de comunicación coherente con tu voz de marca, con formación semanal, acompañamiento y una comunidad de mujeres como tú.</p>
+              <p className="r-text">Deja de publicar de forma improvisada y agotadora y crea una estrategia de comunicación coherente con tu voz.</p>
               <div className="r-svc__cta"><Btn href={lab.href} variant="dark">Descubre Content Lab →</Btn></div>
             </Reveal>
           </div>
