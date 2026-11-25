@@ -186,7 +186,7 @@ export default function Home() {
             <Reveal id="black-moon" className="r-svc r-svc--dark">
               <Eyebrow>01 · Mentoría privada</Eyebrow>
               <h3 className="r-display r-lg r-svc__title">Black Moon <Em>Strategy</Em></h3>
-              <p className="r-text">Una mentoría privada de estrategia de marca personal para transformar tu identidad, tu experiencia y tu potencial, partiendo de tu carta natal, en una marca sólida, diferenciada y alineada con el negocio que quieres construir.</p>
+              <p className="r-text">Transforma tu identidad, tu experiencia y tu potencial en una marca personal sólida, diferenciada y alineada con tu energía, partiendo de tu carta natal.</p>
               <div className="r-svc__cta"><Btn href={bms.href} variant="pink">Descubre Black Moon Strategy →</Btn></div>
             </Reveal>
             <Reveal id="content-lab" delay={100} className="r-svc">
