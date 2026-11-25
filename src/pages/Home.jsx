@@ -44,9 +44,9 @@ const TE_SUENA = [
 
 // [rosa, resto]: the part before "pero" is set in the pink hand font
 const Y_AUN_ASI = [
-  ['Tienes resultados buenísimos con tus clientas… ', 'pero no consigues atraer a más gente, no estás percibiendo lo que realmente mereces por el trabajo que haces y sigues dependiendo del boca a boca, o de que alguien te recomiende.'],
-  ['Tienes ideas geniales para crear, ', 'pero no sabes cómo bajarlas a tierra, estructurarlas y venderlas de forma fácil.'],
-  ['Tu misión es estar al servicio de los demás, ', 'pero el marketing te supera. Te suena complicado, y encima el que has conocido hasta ahora es demasiado masculino, enfocado a la venta agresiva… y tú no te reconoces ahí.'],
+  ['¿Tienes ideas geniales para crear, ', 'pero no sabes cómo bajarlas a tierra, estructurarlas y convertirlas en una oferta que se venda de forma fácil?'],
+  ['Tu misión es estar al servicio de los demás, ', 'pero el marketing te supera. Te suena complicado, y encima el que te han enseñado hasta ahora es demasiado masculino, enfocado a la venta agresiva, y tú no te reconoces en ello.'],
+  ['Tienes resultados buenísimos con tus clientas, ', 'pero no consigues atraer a más gente, no estás cobrando lo que realmente mereces por el trabajo que haces y sigues dependiendo del boca a boca o de que alguien te recomiende.'],
 ]
 
 const FINAL_CTAS = [
